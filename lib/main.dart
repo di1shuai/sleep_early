@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_early/demo/device_info.dart';
+import 'package:sleep_early/demo/restart.dart';
 import 'pages/home.dart';
-
+import 'package:sleep_early/demo/native.dart';
+import 'package:sleep_early/demo/power.dart';
 
 void main() => runApp(SleepEarly());
 
@@ -13,5 +16,7 @@ class SleepEarly extends StatelessWidget {
       darkTheme: ThemeData.dark(),
       home: Home(),
     );
+    // return new Power();
+    // return NativeApp();
   }
 }

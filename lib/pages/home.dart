@@ -87,7 +87,14 @@ class Home extends StatelessWidget {
                                   items[index].switchValue,
                                   items[index].time))));
                 },
-              ))
+              )),
+              Expanded(
+                flex: 1,
+                child: IconButton(
+                  icon: Icon(Icons.access_time),
+                  onPressed: null,
+                ),
+              )
         ],
       ),
     );

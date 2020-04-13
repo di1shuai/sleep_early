@@ -5,6 +5,9 @@ class DeviceCardModel {
   bool switchValue;
   String time;
   int code;
+  String platform;
+  String deviceId;
+  String deviceType;
 
   int hour;
   int minute;
