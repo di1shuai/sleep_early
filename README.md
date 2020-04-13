@@ -27,7 +27,7 @@ samples, guidance on mobile development, and a full API reference.
 
 - Home
 
-![](https://github.com/BestBurning/mhxy/blob/master/doc/images/home.jpg)
+![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/home.png)
 
 ## Todo
 
