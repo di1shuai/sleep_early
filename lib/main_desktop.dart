@@ -5,6 +5,6 @@ import 'package:flutter/material.dart';
 import 'main.dart' as original_main;
 
 void main() {
-  debugDefaultTargetPlatformOverride = TargetPlatform.fuchsia;
+  debugDefaultTargetPlatformOverride = TargetPlatform.windows;
   original_main.main();
 }

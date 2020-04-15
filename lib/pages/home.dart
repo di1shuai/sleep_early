@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_early/pages/menu.dart';
 import 'device_card.dart';
 import 'package:sleep_early/model/device_card.dart';
 
@@ -24,7 +25,13 @@ class Header extends StatelessWidget {
                       icon: Icon(Icons.menu,
                           color: Theme.of(context).iconTheme.color),
                       tooltip: 'Navigation menu',
-                      onPressed: null,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          new MaterialPageRoute(
+                              builder: (context) => new Menu()),
+                        );
+                      },
                       disabledColor: Theme.of(context).accentColor),
                 ),
                 Expanded(
@@ -90,8 +97,13 @@ class Home extends StatelessWidget {
           Expanded(
             flex: 1,
             child: IconButton(
-              icon: Icon(Icons.access_time),
-              onPressed: null,
+              icon: Icon(
+                Icons.access_time,
+                color: Theme.of(context).iconTheme.color,
+              ),
+              onPressed: (){
+                print('要关机啦');
+              },
             ),
           )
         ],
