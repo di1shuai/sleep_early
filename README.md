@@ -25,13 +25,16 @@ desktop为go-flutter
 
 - Home
   - android
-![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/home.png)
+  
+  ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/home.png)
 
   - windows
-![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/windows.png)
+  
+  ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/windows.png)
 
 - Time Select
-![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png)
+  
+  ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png)
 
 
 ## Todo
