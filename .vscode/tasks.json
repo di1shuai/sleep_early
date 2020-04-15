@@ -1,0 +1,14 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "hover build windows",
+            "type": "shell",
+            // 我的windows平台
+            "command": "hover build windows --debug",
+            "problemMatcher": [
+                "$go"
+            ]
+        }
+    ]
+}

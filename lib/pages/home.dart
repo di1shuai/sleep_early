@@ -34,10 +34,8 @@ class Header extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: IconButton(
-                      icon: Icon(
-                        Icons.search,
-                        color: Theme.of(context).iconTheme.color
-                      ),
+                      icon: Icon(Icons.search,
+                          color: Theme.of(context).iconTheme.color),
                       tooltip: 'Search',
                       onPressed: null,
                       disabledColor: Theme.of(context).accentColor),
@@ -56,6 +54,7 @@ class Home extends StatelessWidget {
     List items = DeviceCardModel.data();
 
     return Material(
+      color: Theme.of(context).backgroundColor,
       child: Column(
         children: <Widget>[
           Expanded(
@@ -63,7 +62,7 @@ class Home extends StatelessWidget {
             child: Header(
               title: Text(
                 'Sleep Early',
-                style: Theme.of(context).primaryTextTheme.title,
+                style: Theme.of(context).primaryTextTheme.headline6,
               ),
             ),
           ),
@@ -74,7 +73,7 @@ class Home extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return new ListTile(
                       title: new SizedBox(
-                          height: 70.0, //设置高度
+                          height: 60.0, //设置高度
                           child: new Card(
                               color: Theme.of(context).cardTheme.color,
                               elevation: 15.0, //设置阴影
@@ -88,13 +87,13 @@ class Home extends StatelessWidget {
                                   items[index].time))));
                 },
               )),
-              Expanded(
-                flex: 1,
-                child: IconButton(
-                  icon: Icon(Icons.access_time),
-                  onPressed: null,
-                ),
-              )
+          Expanded(
+            flex: 1,
+            child: IconButton(
+              icon: Icon(Icons.access_time),
+              onPressed: null,
+            ),
+          )
         ],
       ),
     );

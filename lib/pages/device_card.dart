@@ -32,25 +32,25 @@ class _DeviceCardState extends State<DeviceCard> {
     Icon result;
     switch (this._icon) {
       case 'mac':
-        result = Icon(Icons.desktop_mac, color: Theme.of(context).accentColor);
+        result = Icon(Icons.desktop_mac, color: Theme.of(context).accentIconTheme.color);
         break;
       case 'windows':
-        result = Icon(Icons.desktop_windows, color: Theme.of(context).accentColor);
+        result = Icon(Icons.desktop_windows, color: Theme.of(context).accentIconTheme.color);
         break;
       case 'ipad':
-        result = Icon(Icons.tablet_mac, color: Theme.of(context).accentColor);
+        result = Icon(Icons.tablet_mac, color: Theme.of(context).accentIconTheme.color);
         break;
       case 'tablet':
-        result = Icon(Icons.tablet_android, color: Theme.of(context).accentColor);
+        result = Icon(Icons.tablet_android, color: Theme.of(context).accentIconTheme.color);
         break;
       case 'iphone':
-        result = Icon(Icons.phone_iphone, color: Theme.of(context).accentColor);
+        result = Icon(Icons.phone_iphone, color: Theme.of(context).accentIconTheme.color);
         break;
       case 'android':
-        result = Icon(Icons.phone_android, color: Theme.of(context).accentColor);
+        result = Icon(Icons.phone_android, color: Theme.of(context).accentIconTheme.color);
         break;
       default:
-        result = Icon(Icons.device_unknown, color: Theme.of(context).accentColor);
+        result = Icon(Icons.device_unknown, color: Theme.of(context).iconTheme.color);
     }
     return result;
   }
@@ -65,14 +65,14 @@ class _DeviceCardState extends State<DeviceCard> {
       Expanded(
         flex: 2,
         child: Text(this._deviceName,
-            style: Theme.of(context).primaryTextTheme.body1),
+            style: Theme.of(context).primaryTextTheme.bodyText1),
       ),
       Expanded(
         flex: 2,
         child: FlatButton(
           child: Text(
             '${_time.hour}:${_time.minute}',
-            style: Theme.of(context).primaryTextTheme.body1,
+            style: Theme.of(context).primaryTextTheme.button,
           ),
           onPressed: () {
             _selectTime(context);

@@ -8,6 +8,14 @@
             "name": "Flutter",
             "request": "launch",
             "type": "dart"
+        },
+        {
+            "name": "Flutter Desktop App",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main_desktop.dart",
+            "args": ["--use-application-binary", "go/build/outputs/windows/sleep_early.exe"],
+            "preLaunchTask": "hover build windows"
         }
     ]
 }

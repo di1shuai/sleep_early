@@ -9,7 +9,7 @@ class SleepEarly extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Sleep Early',
-      theme: ThemeData(),
+      theme: ThemeData.dark(),
       darkTheme: ThemeData.dark(),
       home: Home(),
     );
