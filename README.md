@@ -10,18 +10,16 @@
 
 无奈最近因为各种事情而导致拖延晚于`10:30`睡觉，有时是`mac`或者`win10`上的代码，有时是`ipad`里的剧，有时是`电话`里的女友，所以希望能有个强制性的监督管理机制，强迫自己关机睡觉
 
-## Getting Started
+## 运行
 
-This project is a starting point for a Flutter application.
+#### Flutter
 
-A few resources to get you started if this is your first Flutter project:
+主体为flutter项目
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+#### Go-Flutter
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+desktop为go-flutter
+
 
 ## 界面
 
@@ -33,11 +31,17 @@ samples, guidance on mobile development, and a full API reference.
 
 - [x] Home界面
 - [ ] 关机功能
-- [ ] 设备绑定
-- [ ] 全端适配
-  - [x] android
-  - [x] ios
-  - [x] ipad
+  - [ ] android
+  - [ ] ios
+  - [ ] ipad
   - [ ] windows
   - [ ] linux
   - [ ] mac
+- [ ] 设备绑定
+- [x] 全端适配
+  - [x] android
+  - [x] ios
+  - [x] ipad
+  - [x] windows
+  - [x] linux
+  - [x] mac

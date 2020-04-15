@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_early/demo/device_info.dart';
-import 'package:sleep_early/demo/restart.dart';
 import 'pages/home.dart';
 import 'package:sleep_early/demo/native.dart';
-import 'package:sleep_early/demo/power.dart';
 
 void main() => runApp(SleepEarly());
 
