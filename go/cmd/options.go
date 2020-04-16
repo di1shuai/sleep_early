@@ -7,5 +7,5 @@ import (
 
 var options = []flutter.Option{
 	flutter.WindowInitialDimensions(480, 660),
-	flutter.AddPlugin(&shutdown_platform.ShutdownPlatformPlugin),
+	flutter.AddPlugin(&shutdown_platform.ShutdownPlatformPlugin{}),
 }
