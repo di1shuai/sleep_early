@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shutdown_platform/shutdown_platform.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -14,9 +15,10 @@ class _Menu extends State<Menu> {
       ),
       body: new Center(
         child: new RaisedButton(
-          child: new Text('Go back!'),
-          onPressed: () {
-            Navigator.pop(context);
+          child: new Text('Shutdown'),
+          onPressed: () async {
+            // Navigator.pop(context);
+            await ShutdownPlatform.shutdown;
           },
         ),
       ),
