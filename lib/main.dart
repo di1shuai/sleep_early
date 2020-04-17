@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/home.dart';
+import 'views/home.dart';
 import 'package:sleep_early/demo/native.dart';
 
 void main() => runApp(SleepEarly());

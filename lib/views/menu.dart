@@ -18,7 +18,7 @@ class _Menu extends State<Menu> {
           child: new Text('Shutdown'),
           onPressed: () async {
             // Navigator.pop(context);
-            await ShutdownPlatform.shutdown;
+            await ShutdownPlatform.shutdownNow;
           },
         ),
       ),

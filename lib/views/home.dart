@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_early/pages/menu.dart';
-import 'device_card.dart';
+import 'package:sleep_early/views/menu.dart';
+import 'package:sleep_early/widgets/device_card.dart';
 import 'package:sleep_early/model/device_card.dart';
 
 class Header extends StatelessWidget {
