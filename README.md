@@ -25,16 +25,16 @@ desktop为go-flutter
 
 - Home
 
-![android](https://github.com/di1shuai/sleep_early/blob/master/doc/images/home.png){:width="482" height="698"}
+<div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/android.png" width="482" height="698" alt="android"/></div>
 
-![windows](https://github.com/di1shuai/sleep_early/blob/master/doc/images/windows.png){:width="482" height="698"}
+<div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/windows.png" width="482" height="698" alt="windows"/></div>
 
-![mac](https://github.com/di1shuai/sleep_early/blob/master/doc/images/mac.png){:width="482" height="698"}
-
+<div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/mac.png" width="482" height="698" alt="mac"/></div>
 
 - Time Select
 
-![Time Select](https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png){:width="482" height="698"}
+<div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png" width="482" height="698" alt="select"/></div>
+
 
 
 ## Todo
