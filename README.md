@@ -32,6 +32,10 @@ desktop为go-flutter
   
   ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/windows.png)
 
+  - mac
+  ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/mac.png)
+
+
 - Time Select
   
   ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png)
@@ -44,9 +48,9 @@ desktop为go-flutter
   - [ ] android
   - [ ] ios
   - [ ] ipad
-  - [ ] windows
-  - [ ] linux
-  - [ ] mac
+  - [x] windows
+  - [x] linux
+  - [x] mac
 - [ ] 设备绑定
 - [x] 全端适配
   - [x] android

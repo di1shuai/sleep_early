@@ -122,7 +122,7 @@ packages:
       name: shutdown_platform
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "0.0.1"
+    version: "0.1.0"
   sky_engine:
     dependency: transitive
     description: flutter

@@ -1,6 +1,6 @@
-github.com/BestBurning/shutdown_platform v0.0.0-20200416142641-ddedfaca2f4b h1:JUMZz/jT50OuRWQDAf02Xrim3CPZqClEEBDNnCm1COU=
-github.com/BestBurning/shutdown_platform/go v0.0.1 h1:zoikPf5B+14+XzFHmuwMmT+eDh0j/OWVglLPh4CsnzA=
-github.com/BestBurning/shutdown_platform/go v0.0.1/go.mod h1:mki3B5qAJ4c0tOQ8iRV1Zesxt05kagU8UaywAKf4N2g=
+github.com/BestBurning/shutdown_platform v0.0.0-20200417093913-6e4b8dfa1977 h1:WmcwAK1eIlMJJkCeohGFOJexPKkw4e/7ldiPxhai6XM=
+github.com/BestBurning/shutdown_platform/go v0.1.0 h1:6UXrJBc+d6MdlHThdtuOYv4V4UCWv9PZMV7rCakWW8M=
+github.com/BestBurning/shutdown_platform/go v0.1.0/go.mod h1:mki3B5qAJ4c0tOQ8iRV1Zesxt05kagU8UaywAKf4N2g=
 github.com/cubiest/jibberjabber v0.0.0-20200222172555-1351aa3fb4de h1:T/+z9EyfuAur9RtvpyY2bnidbgRR1rklpKjkypTaumY=
 github.com/cubiest/jibberjabber v0.0.0-20200222172555-1351aa3fb4de/go.mod h1:KwsZfRYrxgmPSgdFdORzlShUdTV5/Ri6XBMVT7TVCJY=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
