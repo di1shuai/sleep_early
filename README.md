@@ -24,21 +24,17 @@ desktop为go-flutter
 ## 界面
 
 - Home
-  - android
-  
-  ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/home.png)
 
-  - windows
-  
-  ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/windows.png)
+![android](https://github.com/di1shuai/sleep_early/blob/master/doc/images/home.png){: width="482px" height="698px"}
 
-  - mac
-  ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/mac.png)
+![windows](https://github.com/di1shuai/sleep_early/blob/master/doc/images/windows.png){: width="482px" height="698px"}
+
+![mac](https://github.com/di1shuai/sleep_early/blob/master/doc/images/mac.png){: width="482px" height="698px"}
 
 
 - Time Select
-  
-  ![](https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png)
+
+![Time Select](https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png){: width="482px" height="698px"}
 
 
 ## Todo
