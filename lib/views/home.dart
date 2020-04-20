@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sleep_early/views/menu.dart';
 import 'package:sleep_early/widgets/device_card.dart';
 import 'package:sleep_early/model/device_card.dart';
+import 'package:sleep_early/widgets/device_dialog.dart';
 
 class Header extends StatelessWidget {
   Header({this.title});
@@ -89,7 +90,7 @@ class Home extends StatelessWidget {
                                       Radius.circular(10.0))), //设置圆角
                               child: new DeviceCard(
                                   items[index].deviceName,
-                                  items[index].icon,
+                                  items[index].platform,
                                   items[index].switchValue,
                                   items[index].time))));
                 },
@@ -101,8 +102,14 @@ class Home extends StatelessWidget {
                 Icons.access_time,
                 color: Theme.of(context).iconTheme.color,
               ),
-              onPressed: (){
-                print('要关机啦');
+              onPressed: () async {
+                DeviceCardModel data = await showCreateDialog(context);
+                if (data == null) {
+                  print('取消');
+                } else {
+                  print('绑定');
+                  print(data);
+                }
               },
             ),
           )

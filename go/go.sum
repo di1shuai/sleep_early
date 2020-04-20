@@ -1,3 +1,6 @@
+github.com/BestBurning/platform_device_id v0.0.0-20200419014920-ccdd445d21e5 h1:uyGtpOAqKTmeJsq69Evm2kYl8wjE9B1LUoUyy/1l7JY=
+github.com/BestBurning/platform_device_id/go v0.1.0 h1:4nDacIqZujdPo8ACaq5J5lKBygYmhwb+70FNN/c/+cQ=
+github.com/BestBurning/platform_device_id/go v0.1.0/go.mod h1:o3PoxuIJzS97C581uz8mzIXg5fz3OcpOGfKJrQ++7KQ=
 github.com/BestBurning/shutdown_platform v0.0.0-20200417093913-6e4b8dfa1977 h1:WmcwAK1eIlMJJkCeohGFOJexPKkw4e/7ldiPxhai6XM=
 github.com/BestBurning/shutdown_platform/go v0.1.0 h1:6UXrJBc+d6MdlHThdtuOYv4V4UCWv9PZMV7rCakWW8M=
 github.com/BestBurning/shutdown_platform/go v0.1.0/go.mod h1:mki3B5qAJ4c0tOQ8iRV1Zesxt05kagU8UaywAKf4N2g=

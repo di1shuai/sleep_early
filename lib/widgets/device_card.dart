@@ -3,25 +3,25 @@ import 'package:flutter/cupertino.dart';
 
 class DeviceCard extends StatefulWidget {
   String deviceName;
-  String icon;
+  String platform;
   bool _switchValue;
   String _time;
 
-  DeviceCard(this.deviceName, this.icon, this._switchValue, this._time);
+  DeviceCard(this.deviceName, this.platform, this._switchValue, this._time);
 
   @override
   _DeviceCardState createState() =>
-      _DeviceCardState(deviceName, icon, _switchValue, _time);
+      _DeviceCardState(deviceName, platform, _switchValue, _time);
 }
 
 class _DeviceCardState extends State<DeviceCard> {
   String _deviceName;
-  String _icon;
+  String _platform;
   bool _switchValue;
   TimeOfDay _time;
 
   _DeviceCardState(
-      this._deviceName, this._icon, this._switchValue, String time) {
+      this._deviceName, this._platform, this._switchValue, String time) {
     List timeArr = time.split(':');
     int hour = int.parse(timeArr[0]);
     int minute = int.parse(timeArr[1]);
@@ -30,27 +30,37 @@ class _DeviceCardState extends State<DeviceCard> {
 
   Icon getIcon(BuildContext context) {
     Icon result;
-    switch (this._icon) {
-      case 'mac':
-        result = Icon(Icons.desktop_mac, color: Theme.of(context).accentIconTheme.color);
+    switch (this._platform) {
+      case 'macos':
+        result = Icon(Icons.desktop_mac,
+            color: Theme.of(context).accentIconTheme.color);
         break;
       case 'windows':
-        result = Icon(Icons.desktop_windows, color: Theme.of(context).accentIconTheme.color);
+        result = Icon(Icons.desktop_windows,
+            color: Theme.of(context).accentIconTheme.color);
         break;
-      case 'ipad':
-        result = Icon(Icons.tablet_mac, color: Theme.of(context).accentIconTheme.color);
+      case 'linux':
+        result = Icon(Icons.tablet_mac,
+            color: Theme.of(context).accentIconTheme.color);
         break;
-      case 'tablet':
-        result = Icon(Icons.tablet_android, color: Theme.of(context).accentIconTheme.color);
-        break;
-      case 'iphone':
-        result = Icon(Icons.phone_iphone, color: Theme.of(context).accentIconTheme.color);
+      // case 'ipad':
+      //   result = Icon(Icons.tablet_mac, color: Theme.of(context).accentIconTheme.color);
+      //   break;
+      // case 'tablet':
+      //   result = Icon(Icons.tablet_android, color: Theme.of(context).accentIconTheme.color);
+      //   break;
+      case 'ios':
+        result = Icon(Icons.phone_iphone,
+            color: Theme.of(context).accentIconTheme.color);
         break;
       case 'android':
-        result = Icon(Icons.phone_android, color: Theme.of(context).accentIconTheme.color);
+        result = Icon(Icons.phone_android,
+            color: Theme.of(context).accentIconTheme.color);
         break;
+
       default:
-        result = Icon(Icons.device_unknown, color: Theme.of(context).iconTheme.color);
+        result = Icon(Icons.device_unknown,
+            color: Theme.of(context).iconTheme.color);
     }
     return result;
   }

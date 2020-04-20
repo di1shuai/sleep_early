@@ -3,8 +3,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:device_info/device_info.dart';
-import 'package:sleep_early/component/device_id.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 
 class DeviceIdPage extends StatefulWidget {
   @override
@@ -12,7 +11,6 @@ class DeviceIdPage extends StatefulWidget {
 }
 
 class _DeviceIdPageState extends State<DeviceIdPage> {
-  static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   String _deviceId = '';
   String _platform = '';
 
@@ -23,7 +21,7 @@ class _DeviceIdPageState extends State<DeviceIdPage> {
   }
 
   Future<void> initPlatformState() async {
-    String deviceId = await DeviceId.getDeviceId;
+    String deviceId = await PlatformDeviceId.getDeviceId;
     String platform = Platform.operatingSystem;
     try {
       if (Platform.isAndroid) {
