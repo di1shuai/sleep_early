@@ -25,6 +25,32 @@ class API {
       throw Exception('Failed to load Devices');
     }
   }
+
+  static Future<Device> CreateDevice(int accountId,Device device) async {
+    var data = await APIUtil.post(
+        APIUrl.DEVICE.replaceFirst(APIUrl.DEVICE_REPICE, accountId.toString()),
+        device.toMap());
+    try {
+      Device device = Device.fromMap(data);
+      return device;
+    } catch (err) {
+      throw Exception('Failed to load Device');
+    }
+  }
+
+  static Future<Device> UpdateDevice(int accountId,Device device) async {
+    var data = await APIUtil.put(
+        APIUrl.DEVICE.replaceFirst(APIUrl.DEVICE_REPICE, accountId.toString()),
+        device.toMap());
+    try {
+      Device device = Device.fromMap(data);
+      return device;
+    } catch (err) {
+      throw Exception('Failed to load Device');
+    }
+  }
+
+
 }
 
 List<Device> toDeviceList(data) {

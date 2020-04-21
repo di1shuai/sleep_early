@@ -29,6 +29,7 @@ dependencies:
   platform_device_id: ^0.1.0
   dio: ^3.0.9
   http: ^0.12.0+4
+  provider: ^4.0.5
   
 dev_dependencies:
   flutter_test:

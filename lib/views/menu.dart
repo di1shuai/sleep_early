@@ -5,6 +5,7 @@ import 'package:sleep_early/demo/device_info.dart';
 import 'package:sleep_early/demo/http_demo.dart';
 import 'package:sleep_early/demo/key_demo.dart';
 import 'package:sleep_early/demo/permission_demo.dart';
+import 'package:sleep_early/demo/provider_demo.dart';
 import 'package:sleep_early/demo/text_demo.dart';
 import 'package:sleep_early/demo/text_demo2.dart';
 import 'package:sleep_early/model/device.dart';
@@ -74,6 +75,16 @@ class _Menu extends State<Menu> {
             },
           ),
           new ListTile(
+            title: new Text('provider'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new ProviderApp()),
+              );
+            },
+          ),
+          new ListTile(
             title: new Text('http'),
             onTap: () {
               Navigator.push(
@@ -106,7 +117,7 @@ class _Menu extends State<Menu> {
           new ListTile(
             title: new Text('pop dailog'),
             onTap: () async {
-              Device data = await showCreateDialog(context);
+              bool data = await showCreateDialog(context);
               if (data == null) {
                 print("取消绑定");
               } else {

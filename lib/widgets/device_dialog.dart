@@ -2,14 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:platform_device_id/platform_device_id.dart';
+import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/model/device.dart';
 
 class DeviceDialog extends StatefulWidget {
-  
-
   Device device;
   bool isCreate;
-  DeviceDialog({Key key , this.device, this.isCreate}):super(key:key);
+  DeviceDialog({Key key, this.device, this.isCreate}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _DeviceDialogState(device, isCreate);
@@ -20,7 +20,7 @@ class _DeviceDialogState extends State<DeviceDialog> {
   bool _isCreate;
   TimeOfDay _time;
 
-  _DeviceDialogState(this._device, this._isCreate){
+  _DeviceDialogState(this._device, this._isCreate) {
     _time = _device.getTimeOfDay();
   }
 
@@ -86,15 +86,21 @@ class _DeviceDialogState extends State<DeviceDialog> {
   }
 }
 
-Future<Device> showCreateDialog(BuildContext context) {
+Future<bool> showCreateDialog(BuildContext context) async {
   Device _device_init = new Device(
-      null, Platform.localHostname,'xxxx', Platform.operatingSystem.toUpperCase(), true, '22:30');
+      null,
+      Platform.localHostname,
+      await PlatformDeviceId.getDeviceId,
+      Platform.operatingSystem.toUpperCase(),
+      true,
+      '22:30');
 
   final GlobalKey<_DeviceDialogState> key = GlobalKey();
 
-  DeviceDialog dialog = new DeviceDialog(key:key,device:_device_init,isCreate:true);
+  DeviceDialog dialog =
+      new DeviceDialog(key: key, device: _device_init, isCreate: true);
 
-  return showDialog<Device>(
+  return showDialog<bool>(
     context: context,
     builder: (context) {
       return AlertDialog(
@@ -103,13 +109,18 @@ Future<Device> showCreateDialog(BuildContext context) {
         actions: <Widget>[
           FlatButton(
             child: Text("取消"),
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.of(context).pop(false),
           ),
           FlatButton(
             child: Text("绑定"),
-            onPressed: () {
-              //Todo http json create
-              Navigator.of(context).pop(key.currentState._device);
+            onPressed: () async {
+              Device device =
+                  await API.CreateDevice(1, key.currentState._device);
+              if (device != null) {
+                Navigator.of(context).pop(true);
+              } else {
+                Navigator.of(context).pop(false);
+              }
             },
           ),
         ],

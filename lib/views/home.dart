@@ -79,8 +79,8 @@ class _HomeState extends State<Home> {
 
   Future<void> init() async {
     _account = await API.getAccount(1);
-    _accountFuture = API.getAccount(1);
-    print(_account);
+    // _accountFuture = API.getAccount(1);
+    // print(_account);
     _devicesFuture = API.getDeviceList(1);
     // _devicesFuture = API.getDeviceList(1);
   }
@@ -108,19 +108,19 @@ class _HomeState extends State<Home> {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.done) {
                       if (snapshot.hasData) {
-                        return new ListView(
+                        return ListView(
                           children: snapshot.data.map((device) {
-                            return new ListTile(
-                                title: new SizedBox(
+                            return ListTile(
+                                title: SizedBox(
                                     height: 60.0, //设置高度
-                                    child: new Card(
+                                    child: Card(
                                         color:
                                             Theme.of(context).cardTheme.color,
                                         elevation: 15.0, //设置阴影
                                         shape: const RoundedRectangleBorder(
                                             borderRadius: BorderRadius.all(
                                                 Radius.circular(10.0))), //设置圆角
-                                        child: new DeviceCard(
+                                        child: DeviceCard(
                                             device.deviceName,
                                             device.platform,
                                             device.open,
@@ -143,12 +143,12 @@ class _HomeState extends State<Home> {
                 color: Theme.of(context).iconTheme.color,
               ),
               onPressed: () async {
-                Device data = await showCreateDialog(context);
-                if (data == null) {
+                bool isCreate = await showCreateDialog(context);
+                if (isCreate == null) {
                   print('取消');
                 } else {
-                  print('绑定');
-                  print(data);
+                  setState(() => {});
+                  print('刷新');
                 }
               },
             ),
