@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:sleep_early/api/api.dart';
+import 'package:sleep_early/model/account.dart';
 import 'package:sleep_early/views/menu.dart';
 import 'package:sleep_early/widgets/device_card.dart';
-import 'package:sleep_early/model/device_card.dart';
+import 'package:sleep_early/model/device.dart';
 import 'package:sleep_early/widgets/device_dialog.dart';
 
 class Header extends StatelessWidget {
@@ -56,11 +59,34 @@ class Header extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  Account _account;
+  List<Device> _devices;
+
+  Future<List<Device>> _devicesFuture;
+  Future<Account> _accountFuture;
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
+  Future<void> init() async {
+    _account = await API.getAccount(1);
+    _accountFuture = API.getAccount(1);
+    print(_account);
+    _devicesFuture = API.getDeviceList(1);
+    // _devicesFuture = API.getDeviceList(1);
+  }
+
   @override
   Widget build(BuildContext context) {
-    List items = DeviceCardModel.data();
-
     return Material(
       color: Theme.of(context).backgroundColor,
       child: Column(
@@ -76,25 +102,39 @@ class Home extends StatelessWidget {
           ),
           Expanded(
               flex: 4,
-              child: new ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (context, index) {
-                  return new ListTile(
-                      title: new SizedBox(
-                          height: 60.0, //设置高度
-                          child: new Card(
-                              color: Theme.of(context).cardTheme.color,
-                              elevation: 15.0, //设置阴影
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(10.0))), //设置圆角
-                              child: new DeviceCard(
-                                  items[index].deviceName,
-                                  items[index].platform,
-                                  items[index].switchValue,
-                                  items[index].time))));
-                },
-              )),
+              child: FutureBuilder<List>(
+                  future: _devicesFuture,
+                  initialData: Device.data(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      if (snapshot.hasData) {
+                        return new ListView(
+                          children: snapshot.data.map((device) {
+                            return new ListTile(
+                                title: new SizedBox(
+                                    height: 60.0, //设置高度
+                                    child: new Card(
+                                        color:
+                                            Theme.of(context).cardTheme.color,
+                                        elevation: 15.0, //设置阴影
+                                        shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10.0))), //设置圆角
+                                        child: new DeviceCard(
+                                            device.deviceName,
+                                            device.platform,
+                                            device.open,
+                                            device.time))));
+                          }).toList(),
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text("${snapshot.error}");
+                      }
+                    } else {
+                      // By default, show a loading spinner.
+                      return CircularProgressIndicator();
+                    }
+                  })),
           Expanded(
             flex: 1,
             child: IconButton(
@@ -103,7 +143,7 @@ class Home extends StatelessWidget {
                 color: Theme.of(context).iconTheme.color,
               ),
               onPressed: () async {
-                DeviceCardModel data = await showCreateDialog(context);
+                Device data = await showCreateDialog(context);
                 if (data == null) {
                   print('取消');
                 } else {

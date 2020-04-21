@@ -4,24 +4,24 @@ import 'package:flutter/cupertino.dart';
 class DeviceCard extends StatefulWidget {
   String deviceName;
   String platform;
-  bool _switchValue;
+  bool _open;
   String _time;
 
-  DeviceCard(this.deviceName, this.platform, this._switchValue, this._time);
+  DeviceCard(this.deviceName, this.platform, this._open, this._time);
 
   @override
   _DeviceCardState createState() =>
-      _DeviceCardState(deviceName, platform, _switchValue, _time);
+      _DeviceCardState(deviceName, platform, _open, _time);
 }
 
 class _DeviceCardState extends State<DeviceCard> {
   String _deviceName;
   String _platform;
-  bool _switchValue;
+  bool _open;
   TimeOfDay _time;
 
   _DeviceCardState(
-      this._deviceName, this._platform, this._switchValue, String time) {
+      this._deviceName, this._platform, this._open, String time) {
     List timeArr = time.split(':');
     int hour = int.parse(timeArr[0]);
     int minute = int.parse(timeArr[1]);
@@ -31,15 +31,15 @@ class _DeviceCardState extends State<DeviceCard> {
   Icon getIcon(BuildContext context) {
     Icon result;
     switch (this._platform) {
-      case 'macos':
+      case 'MACOS':
         result = Icon(Icons.desktop_mac,
             color: Theme.of(context).accentIconTheme.color);
         break;
-      case 'windows':
+      case 'WINDOWS':
         result = Icon(Icons.desktop_windows,
             color: Theme.of(context).accentIconTheme.color);
         break;
-      case 'linux':
+      case 'LINUX':
         result = Icon(Icons.tablet_mac,
             color: Theme.of(context).accentIconTheme.color);
         break;
@@ -49,11 +49,11 @@ class _DeviceCardState extends State<DeviceCard> {
       // case 'tablet':
       //   result = Icon(Icons.tablet_android, color: Theme.of(context).accentIconTheme.color);
       //   break;
-      case 'ios':
+      case 'IOS':
         result = Icon(Icons.phone_iphone,
             color: Theme.of(context).accentIconTheme.color);
         break;
-      case 'android':
+      case 'ANDROID':
         result = Icon(Icons.phone_android,
             color: Theme.of(context).accentIconTheme.color);
         break;
@@ -92,10 +92,10 @@ class _DeviceCardState extends State<DeviceCard> {
       Expanded(
         flex: 2,
         child: CupertinoSwitch(
-          value: _switchValue,
+          value: _open,
           onChanged: (value) {
             setState(() {
-              _switchValue = value;
+              _open = value;
             });
           },
         ),

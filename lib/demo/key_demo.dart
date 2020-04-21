@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_early/model/device_card.dart';
+import 'package:sleep_early/model/device.dart';
 
 class KeyPage extends StatefulWidget {
 
@@ -9,7 +9,7 @@ class KeyPage extends StatefulWidget {
 
 class _KeyPageState extends State<KeyPage> {
   
-  DeviceCardModel d = new DeviceCardModel(null, null, null, null, null);
+  Device d = new Device(null, null, null, null, null,null);
 
   final GlobalKey<SwitcherWidgetState> key = GlobalKey();
 
@@ -33,7 +33,7 @@ class _KeyPageState extends State<KeyPage> {
 
 class SwitcherWidget extends StatefulWidget {
   
-  DeviceCardModel d;
+  Device d;
 
   SwitcherWidget({Key key,this.d}) : super(key: key){
     print(this.d);

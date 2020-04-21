@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:shutdown_platform/shutdown_platform.dart';
 import 'package:sleep_early/demo/device_id.dart';
 import 'package:sleep_early/demo/device_info.dart';
+import 'package:sleep_early/demo/http_demo.dart';
 import 'package:sleep_early/demo/key_demo.dart';
 import 'package:sleep_early/demo/permission_demo.dart';
 import 'package:sleep_early/demo/text_demo.dart';
 import 'package:sleep_early/demo/text_demo2.dart';
-import 'package:sleep_early/model/device_card.dart';
+import 'package:sleep_early/model/device.dart';
 import 'package:sleep_early/widgets/device_dialog.dart';
 
 class Menu extends StatefulWidget {
@@ -71,6 +72,16 @@ class _Menu extends State<Menu> {
                     builder: (context) => new TextPage()),
               );
             },
+          ),
+          new ListTile(
+            title: new Text('http'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new HttpApp()),
+              );
+            },
           ), 
           new ListTile(
             title: new Text('key '),
@@ -95,7 +106,7 @@ class _Menu extends State<Menu> {
           new ListTile(
             title: new Text('pop dailog'),
             onTap: () async {
-              DeviceCardModel data = await showCreateDialog(context);
+              Device data = await showCreateDialog(context);
               if (data == null) {
                 print("取消绑定");
               } else {

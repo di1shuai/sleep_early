@@ -2,20 +2,23 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
-class DeviceCardModel {
+class Device {
   int id;
   String deviceName;
+  String deviceId;
   String platform;
-  bool switchValue;
+  bool open;
   String time;
 
   
-  DeviceCardModel(
+  Device(
     this.id,
     this.deviceName,
+    this.deviceId,
     this.platform,
-    this.switchValue,
-    this.time);
+    this.open,
+    this.time
+  );
   
 
   TimeOfDay getTimeOfDay(){
@@ -30,29 +33,31 @@ class DeviceCardModel {
 
   static List data(){
     List list = [];
-    list.add(DeviceCardModel(1, 'mac笔记本', 'macos', false, '22:30'));
-    list.add(DeviceCardModel(2, 'windows笔记本', 'windows', true, '22:30'));
-    list.add(DeviceCardModel(3, 'iphone手机', 'ios', true, '22:30'));
-    list.add(DeviceCardModel(4, 'android手机', 'android', true, '22:30'));
-    list.add(DeviceCardModel(5, 'ipad', 'ios', true, '22:30'));
-    list.add(DeviceCardModel(6, '华为平板', 'android', true, '23:00'));
+    list.add(Device(1, 'mac笔记本','xxxxxx' ,'macos', false, '22:30'));
+    list.add(Device(2, 'windows笔记本','xxxx' ,'windows', true, '22:30'));
+    list.add(Device(3, 'iphone手机','xxxx' ,'ios', true, '22:30'));
+    list.add(Device(4, 'android手机','xxx' ,'android', true, '22:30'));
+    list.add(Device(5, 'ipad','xxxx' ,'ios', true, '22:30'));
+    list.add(Device(6, '华为平板','xxxx', 'android', true, '23:00'));
     return list;
   }
 
 
 
-  DeviceCardModel copyWith({
+  Device copyWith({
     int id,
     String deviceName,
+    String deviceId,
     String platform,
-    bool switchValue,
+    bool open,
     String time,
   }) {
-    return DeviceCardModel(
+    return Device(
       id ?? this.id,
       deviceName ?? this.deviceName,
+      deviceId ?? this.deviceId,
       platform ?? this.platform,
-      switchValue ?? this.switchValue,
+      open ?? this.open,
       time ?? this.time,
     );
   }
@@ -61,42 +66,45 @@ class DeviceCardModel {
     return {
       'id': id,
       'deviceName': deviceName,
+      'deviceId': deviceId,
       'platform': platform,
-      'switchValue': switchValue,
+      'open': open,
       'time': time,
     };
   }
 
-  static DeviceCardModel fromMap(Map<String, dynamic> map) {
+  static Device fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
   
-    return DeviceCardModel(
+    return Device(
       map['id'],
       map['deviceName'],
+      map['deviceId'],
       map['platform'],
-      map['switchValue'],
+      map['open'],
       map['time'],
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  static DeviceCardModel fromJson(String source) => fromMap(json.decode(source));
+  static Device fromJson(String source) => fromMap(json.decode(source));
 
   @override
   String toString() {
-    return 'DeviceCardModel(id: $id, deviceName: $deviceName, platform: $platform, switchValue: $switchValue, time: $time)';
+    return 'Device(id: $id, deviceName: $deviceName, deviceId: $deviceId, platform: $platform, open: $open, time: $time)';
   }
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
   
-    return o is DeviceCardModel &&
+    return o is Device &&
       o.id == id &&
       o.deviceName == deviceName &&
+      o.deviceId == deviceId &&
       o.platform == platform &&
-      o.switchValue == switchValue &&
+      o.open == open &&
       o.time == time;
   }
 
@@ -104,8 +112,9 @@ class DeviceCardModel {
   int get hashCode {
     return id.hashCode ^
       deviceName.hashCode ^
+      deviceId.hashCode ^
       platform.hashCode ^
-      switchValue.hashCode ^
+      open.hashCode ^
       time.hashCode;
   }
 }
@@ -113,7 +122,7 @@ class DeviceCardModel {
 main(List<String> args) {
    
  
-  List list = DeviceCardModel.data();
+  List list = Device.data();
   // list.forEach((d) => {print(d._id)});
   print(list);
 

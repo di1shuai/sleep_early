@@ -2,12 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:sleep_early/model/device_card.dart';
+import 'package:sleep_early/model/device.dart';
 
 class DeviceDialog extends StatefulWidget {
   
 
-  DeviceCardModel device;
+  Device device;
   bool isCreate;
   DeviceDialog({Key key , this.device, this.isCreate}):super(key:key);
 
@@ -16,7 +16,7 @@ class DeviceDialog extends StatefulWidget {
 }
 
 class _DeviceDialogState extends State<DeviceDialog> {
-  DeviceCardModel _device;
+  Device _device;
   bool _isCreate;
   TimeOfDay _time;
 
@@ -61,10 +61,10 @@ class _DeviceDialogState extends State<DeviceDialog> {
           },
         ),
         CupertinoSwitch(
-          value: _device.switchValue,
+          value: _device.open,
           onChanged: (value) {
             setState(() {
-              _device.switchValue = value;
+              _device.open = value;
             });
           },
         )
@@ -86,15 +86,15 @@ class _DeviceDialogState extends State<DeviceDialog> {
   }
 }
 
-Future<DeviceCardModel> showCreateDialog(BuildContext context) {
-  DeviceCardModel _device_init = new DeviceCardModel(
-      null, Platform.localHostname, Platform.operatingSystem, true, '22:30');
+Future<Device> showCreateDialog(BuildContext context) {
+  Device _device_init = new Device(
+      null, Platform.localHostname,'xxxx', Platform.operatingSystem.toUpperCase(), true, '22:30');
 
   final GlobalKey<_DeviceDialogState> key = GlobalKey();
 
   DeviceDialog dialog = new DeviceDialog(key:key,device:_device_init,isCreate:true);
 
-  return showDialog<DeviceCardModel>(
+  return showDialog<Device>(
     context: context,
     builder: (context) {
       return AlertDialog(
