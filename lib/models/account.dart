@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class Account {
   int id;
-
+  
   Account({
     this.id,
   });
@@ -23,7 +23,7 @@ class Account {
 
   static Account fromMap(Map<String, dynamic> map) {
     if (map == null) return null;
-  
+
     return Account(
       id: map['id'],
     );

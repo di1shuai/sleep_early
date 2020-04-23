@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:sleep_early/api/api_url.dart';
-import 'package:sleep_early/model/api_response.dart';
+import 'package:sleep_early/models/api_response.dart';
 
 Map<String, dynamic> optHeader = {
   'accept-language': 'zh-cn',

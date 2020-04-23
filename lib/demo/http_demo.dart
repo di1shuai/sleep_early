@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/api/api_url.dart';
 import 'package:sleep_early/api/api_util.dart';
-import 'package:sleep_early/model/account.dart';
+import 'package:sleep_early/models/account.dart';
 
 
 Map<String, dynamic> optHeader = {

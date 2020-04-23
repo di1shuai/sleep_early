@@ -8,7 +8,6 @@ import 'package:sleep_early/demo/permission_demo.dart';
 import 'package:sleep_early/demo/provider_demo.dart';
 import 'package:sleep_early/demo/text_demo.dart';
 import 'package:sleep_early/demo/text_demo2.dart';
-import 'package:sleep_early/model/device.dart';
 import 'package:sleep_early/widgets/device_dialog.dart';
 
 class Menu extends StatefulWidget {
@@ -17,9 +16,6 @@ class Menu extends StatefulWidget {
 }
 
 class _Menu extends State<Menu> {
-  
-
-  
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -69,8 +65,7 @@ class _Menu extends State<Menu> {
             onTap: () {
               Navigator.push(
                 context,
-                new MaterialPageRoute(
-                    builder: (context) => new TextPage()),
+                new MaterialPageRoute(builder: (context) => new TextPage()),
               );
             },
           ),
@@ -79,8 +74,7 @@ class _Menu extends State<Menu> {
             onTap: () {
               Navigator.push(
                 context,
-                new MaterialPageRoute(
-                    builder: (context) => new ProviderApp()),
+                new MaterialPageRoute(builder: (context) => new ProviderApp()),
               );
             },
           ),
@@ -89,21 +83,19 @@ class _Menu extends State<Menu> {
             onTap: () {
               Navigator.push(
                 context,
-                new MaterialPageRoute(
-                    builder: (context) => new HttpApp()),
+                new MaterialPageRoute(builder: (context) => new HttpApp()),
               );
             },
-          ), 
+          ),
           new ListTile(
             title: new Text('key '),
             onTap: () {
               Navigator.push(
                 context,
-                new MaterialPageRoute(
-                    builder: (context) => new KeyPage()),
+                new MaterialPageRoute(builder: (context) => new KeyPage()),
               );
             },
-          ),          
+          ),
           new ListTile(
             title: new Text('text input 2'),
             onTap: () {

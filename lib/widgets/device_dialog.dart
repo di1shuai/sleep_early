@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:sleep_early/api/api.dart';
-import 'package:sleep_early/model/device.dart';
+import 'package:sleep_early/models/device.dart';
 
 class DeviceDialog extends StatefulWidget {
   Device device;
@@ -88,12 +88,13 @@ class _DeviceDialogState extends State<DeviceDialog> {
 
 Future<bool> showCreateDialog(BuildContext context) async {
   Device _device_init = new Device(
-      null,
-      Platform.localHostname,
-      await PlatformDeviceId.getDeviceId,
-      Platform.operatingSystem.toUpperCase(),
-      true,
-      '22:30');
+      id: null,
+      accountId: 1,
+      deviceName: Platform.localHostname,
+      deviceId: await PlatformDeviceId.getDeviceId,
+      platform: Platform.operatingSystem.toUpperCase(),
+      open: true,
+      time: '22:30');
 
   final GlobalKey<_DeviceDialogState> key = GlobalKey();
 
@@ -114,8 +115,7 @@ Future<bool> showCreateDialog(BuildContext context) async {
           FlatButton(
             child: Text("绑定"),
             onPressed: () async {
-              Device device =
-                  await API.CreateDevice(1, key.currentState._device);
+              Device device = await API.CreateDevice(key.currentState._device);
               if (device != null) {
                 Navigator.of(context).pop(true);
               } else {
