@@ -5,22 +5,23 @@ import 'package:sleep_early/demo/device_info.dart';
 import 'package:sleep_early/demo/http_demo.dart';
 import 'package:sleep_early/demo/key_demo.dart';
 import 'package:sleep_early/demo/permission_demo.dart';
+import 'package:sleep_early/demo/provider_account.dart';
 import 'package:sleep_early/demo/provider_demo.dart';
 import 'package:sleep_early/demo/text_demo.dart';
 import 'package:sleep_early/demo/text_demo2.dart';
 import 'package:sleep_early/widgets/device_dialog.dart';
 
-class Menu extends StatefulWidget {
+class DemoRoute extends StatefulWidget {
   @override
   _Menu createState() => new _Menu();
 }
 
-class _Menu extends State<Menu> {
+class _Menu extends State<DemoRoute> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Menu'),
+        title: new Text('Demo'),
       ),
       body: new ListView(
         children: <Widget>[
@@ -75,6 +76,15 @@ class _Menu extends State<Menu> {
               Navigator.push(
                 context,
                 new MaterialPageRoute(builder: (context) => new ProviderApp()),
+              );
+            },
+          ),
+          new ListTile(
+            title: new Text('provider account'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => new ProviderAccountAPP()),
               );
             },
           ),

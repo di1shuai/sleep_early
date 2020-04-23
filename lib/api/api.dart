@@ -8,7 +8,7 @@ class API {
   // Login
   
   static Future<Account> login(String username,String password) async {
-    Map data = await APIUtil.post(APIUrl.LOGIN);
+    Map data = await APIUtil.post(APIUrl.LOGIN,{"id":username});
     try {
       Account account = Account.fromMap(data);
       return account;

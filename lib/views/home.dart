@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sleep_early/api/api.dart';
+import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/models/account.dart';
-import 'package:sleep_early/views/menu.dart';
+import 'package:sleep_early/widgets/menu.dart';
 import 'package:sleep_early/widgets/device_card.dart';
 import 'package:sleep_early/models/device.dart';
 import 'package:sleep_early/widgets/device_dialog.dart';
@@ -75,7 +77,7 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    init();
+    // init();
     super.initState();
   }
 
@@ -93,7 +95,8 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: Text('SleepEarly'),
       ),
-      body: _buildBody(), 
+      drawer: Menu(),
+      body: Center(),
     );
 
     // Material(
@@ -167,4 +170,29 @@ class _HomeState extends State<Home> {
   }
 }
 
-_buildBody() {}
+class HomeRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('SleepEarly'),
+      ),
+      drawer: Menu(),
+      body: Center(
+        child: IsLogin(),
+      ),
+    );
+  }
+}
+
+class IsLogin extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    AccountProvider proAccount = Provider.of<AccountProvider>(context);
+    String status = "未登录";
+    if (proAccount.account != null) {
+      status = "登录：" + proAccount.account.id.toString();
+    }
+    return Text(status);
+  }
+}
