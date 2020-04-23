@@ -87,14 +87,7 @@ class _DeviceDialogState extends State<DeviceDialog> {
 }
 
 Future<bool> showCreateDialog(BuildContext context) async {
-  Device _device_init = new Device(
-      id: null,
-      accountId: 1,
-      deviceName: Platform.localHostname,
-      deviceId: await PlatformDeviceId.getDeviceId,
-      platform: Platform.operatingSystem.toUpperCase(),
-      open: true,
-      time: '22:30');
+  Device _device_init = await API.getInitDevice();
 
   final GlobalKey<_DeviceDialogState> key = GlobalKey();
 

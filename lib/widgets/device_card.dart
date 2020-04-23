@@ -1,36 +1,38 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+import 'package:sleep_early/models/device.dart';
 
 class DeviceCard extends StatefulWidget {
-  String deviceName;
-  String platform;
-  bool _open;
-  String _time;
+  Device device;
 
-  DeviceCard(this.deviceName, this.platform, this._open, this._time);
+  DeviceCard({
+    Key key,
+    this.device,
+  }) : super(key: key);
 
   @override
-  _DeviceCardState createState() =>
-      _DeviceCardState(deviceName, platform, _open, _time);
+  _DeviceCardState createState() => _DeviceCardState(device: device);
 }
 
 class _DeviceCardState extends State<DeviceCard> {
-  String _deviceName;
-  String _platform;
-  bool _open;
+  Device device;
+
   TimeOfDay _time;
 
-  _DeviceCardState(
-      this._deviceName, this._platform, this._open, String time) {
-    List timeArr = time.split(':');
-    int hour = int.parse(timeArr[0]);
-    int minute = int.parse(timeArr[1]);
-    this._time = TimeOfDay(hour: hour, minute: minute);
+  _DeviceCardState({Key key, this.device}) {
+    this.device = device;
+    if (this.device != null) {
+      List timeArr = device.time.split(':');
+      int hour = int.parse(timeArr[0]);
+      int minute = int.parse(timeArr[1]);
+      this._time = TimeOfDay(hour: hour, minute: minute);
+    }
   }
 
   Icon getIcon(BuildContext context) {
     Icon result;
-    switch (this._platform) {
+    switch (device.platform) {
       case 'MACOS':
         result = Icon(Icons.desktop_mac,
             color: Theme.of(context).accentIconTheme.color);
@@ -43,12 +45,6 @@ class _DeviceCardState extends State<DeviceCard> {
         result = Icon(Icons.tablet_mac,
             color: Theme.of(context).accentIconTheme.color);
         break;
-      // case 'ipad':
-      //   result = Icon(Icons.tablet_mac, color: Theme.of(context).accentIconTheme.color);
-      //   break;
-      // case 'tablet':
-      //   result = Icon(Icons.tablet_android, color: Theme.of(context).accentIconTheme.color);
-      //   break;
       case 'IOS':
         result = Icon(Icons.phone_iphone,
             color: Theme.of(context).accentIconTheme.color);
@@ -67,40 +63,42 @@ class _DeviceCardState extends State<DeviceCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: <Widget>[
-      Expanded(
-        flex: 1,
-        child: getIcon(context),
-      ),
-      Expanded(
-        flex: 2,
-        child: Text(this._deviceName,
-            style: Theme.of(context).primaryTextTheme.bodyText1),
-      ),
-      Expanded(
-        flex: 2,
-        child: FlatButton(
-          child: Text(
-            '${_time.hour}:${_time.minute}',
-            style: Theme.of(context).primaryTextTheme.button,
-          ),
-          onPressed: () {
-            _selectTime(context);
-          },
-        ),
-      ),
-      Expanded(
-        flex: 2,
-        child: CupertinoSwitch(
-          value: _open,
-          onChanged: (value) {
-            setState(() {
-              _open = value;
-            });
-          },
-        ),
-      ),
-    ]);
+    return Card(
+        color: Theme.of(context).cardTheme.color,
+        elevation: 15.0, //设置阴影
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10.0))), //设置圆角
+        child: SizedBox(
+            height: 60.0, //设置高度
+            child: ListTile(
+                leading: getIcon(context),
+                trailing: CupertinoSwitch(
+                  value: device.open,
+                  onChanged: (value) {
+                    setState(() {
+                      device.open = value;
+                    });
+                  },
+                ),
+                title: Row(children: <Widget>[
+                  Expanded(
+                    flex: 2,
+                    child: Text(device.deviceName,
+                        style: Theme.of(context).primaryTextTheme.bodyText1),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: FlatButton(
+                      child: Text(
+                        '${_time.hour}:${_time.minute}',
+                        style: Theme.of(context).primaryTextTheme.button,
+                      ),
+                      onPressed: () {
+                        _selectTime(context);
+                      },
+                    ),
+                  ),
+                ]))));
   }
 
   Future<void> _selectTime(BuildContext context) async {

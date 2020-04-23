@@ -45,17 +45,17 @@ class Menu extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.settings),
-                    title: const Text('Manage accounts'),
+                    title: const Text('Manage devices'),
                   ),
                   ListTile(
                     leading: const Icon(Icons.ac_unit),
                     title: const Text('Demo'),
-                    onTap: () => Navigator.pushNamed(context, Routes.DEMO_ROUTE),
+                    onTap: () => Navigator.of(context).pushNamed( Routes.DEMO_ROUTE),
                   ),
                   ListTile(
                     leading: const Icon(Icons.ac_unit),
                     title: const Text('Login'),
-                    onTap: () => Navigator.pushNamed(context, Routes.LOGIN_ROUTE),
+                    onTap: () => Navigator.of(context).pushNamed( Routes.LOGIN_ROUTE),
                   ),
                 ],
               ),

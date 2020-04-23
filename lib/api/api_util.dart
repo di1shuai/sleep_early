@@ -4,7 +4,6 @@ import 'package:sleep_early/models/api_response.dart';
 
 Map<String, dynamic> optHeader = {
   'accept-language': 'zh-cn',
-  'content-type': 'application/json'
 };
 
 var dio = new Dio(BaseOptions(
@@ -12,6 +11,7 @@ var dio = new Dio(BaseOptions(
 
 class APIUtil {
   static Future get(String url, [Map<String, dynamic> params]) async {
+    print('-------  url : $url  -------');
     Response response;
     APIResponse apiResponse;
     if (params != null) {
@@ -54,6 +54,4 @@ class APIUtil {
     }
     return apiResponse.data;
   }
-
-
 }

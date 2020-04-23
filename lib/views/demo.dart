@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shutdown_platform/shutdown_platform.dart';
+import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/demo/device_id.dart';
 import 'package:sleep_early/demo/device_info.dart';
+import 'package:sleep_early/demo/future_list_demo.dart';
 import 'package:sleep_early/demo/http_demo.dart';
 import 'package:sleep_early/demo/key_demo.dart';
 import 'package:sleep_early/demo/permission_demo.dart';
@@ -9,6 +11,7 @@ import 'package:sleep_early/demo/provider_account.dart';
 import 'package:sleep_early/demo/provider_demo.dart';
 import 'package:sleep_early/demo/text_demo.dart';
 import 'package:sleep_early/demo/text_demo2.dart';
+import 'package:sleep_early/models/device.dart';
 import 'package:sleep_early/widgets/device_dialog.dart';
 
 class DemoRoute extends StatefulWidget {
@@ -71,6 +74,25 @@ class _Menu extends State<DemoRoute> {
             },
           ),
           new ListTile(
+            title: new Text('future list '),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new FutureListDemo()),
+              );
+            },
+          ),
+          new ListTile(
+            title: new Text('future list go '),
+            onTap: () async {
+              List<Device> data = await API.getDeviceByAccountId(1);
+              for (Device device in data) {
+                print(device);
+              }
+            },
+          ),
+          new ListTile(
             title: new Text('provider'),
             onTap: () {
               Navigator.push(
@@ -84,7 +106,8 @@ class _Menu extends State<DemoRoute> {
             onTap: () {
               Navigator.push(
                 context,
-                new MaterialPageRoute(builder: (context) => new ProviderAccountAPP()),
+                new MaterialPageRoute(
+                    builder: (context) => new ProviderAccountAPP()),
               );
             },
           ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/common/providers.dart';
+import 'package:sleep_early/common/routes.dart';
 import 'package:sleep_early/models/account.dart';
 import 'package:sleep_early/widgets/menu.dart';
 import 'package:sleep_early/widgets/device_card.dart';
@@ -55,7 +56,7 @@ class Header extends StatelessWidget {
                         disabledColor: Theme.of(context).accentColor),
                   )
                 ])),
-            Expanded(flex: 1, child: DeviceCard('全部设备', null, false, '22:30')),
+            // Expanded(flex: 1, child: DeviceCard('全部设备', null, false, '22:30')),
           ],
         ),
       ),
@@ -178,10 +179,34 @@ class HomeRoute extends StatelessWidget {
         title: Text('SleepEarly'),
       ),
       drawer: Menu(),
-      body: Center(
-        child: IsLogin(),
-      ),
+      body: _buildBody(context),
     );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    if (API.isLogin(context)) {
+      //已登录，则展示项目列表
+      return FutureBuilder<List<Device>>(
+          future: API.getDeviceByAccountId(API.currentAccount(context).id),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData) {
+                return ListView(
+                    children: snapshot.data.map((device) {
+                  DeviceCard(device: device);
+                }).toList());
+              }
+            }
+          });
+    } else {
+      //未登录
+      return Center(
+        child: RaisedButton(
+          child: Text('登录'),
+          onPressed: () => Navigator.of(context).pushNamed(Routes.LOGIN_ROUTE),
+        ),
+      );
+    }
   }
 }
 

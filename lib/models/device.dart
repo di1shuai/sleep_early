@@ -100,11 +100,10 @@ class Device {
         time.hashCode;
   }
 
-  TimeOfDay getTimeOfDay(){
+  TimeOfDay getTimeOfDay() {
     var split = this.time.split(":");
     int hour = int.parse(split[0]);
     int minute = int.parse(split[1]);
-    return TimeOfDay(hour: hour,minute: minute);
+    return TimeOfDay(hour: hour, minute: minute);
   }
-
 }

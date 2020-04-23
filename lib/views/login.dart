@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/common/providers.dart';
+import 'package:sleep_early/common/routes.dart';
 import 'package:sleep_early/models/account.dart';
 
 class LoginRoute extends StatefulWidget {
@@ -42,9 +43,10 @@ class _LoginRouteState extends State<LoginRoute> {
           onPressed: () async {
             Account account =
                 await API.login(_unameController.text, _upassController.text);
-            print(account);
             Provider.of<AccountProvider>(context, listen: false).account =
                 account;
+            Navigator.pushNamedAndRemoveUntil(
+                context, Routes.HOME_ROUTE, (Route<dynamic> route) => false);
           },
           child: Text('登录'),
         ),
