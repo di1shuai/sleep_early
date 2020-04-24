@@ -81,7 +81,6 @@ class _HomeRouteState extends State<HomeRoute> {
           if (isCreate == false) {
             print('取消');
           } else {
-            print('刷新');
             setState(() {});
           }
         },

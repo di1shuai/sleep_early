@@ -42,7 +42,7 @@ class DeviceAPI {
     }
   }
 
-  static Future<Device> UpdateDevice(int accountId, Device device) async {
+  static Future<Device> UpdateDevice(Device device) async {
     var data = await APIUtil.put(APIUrl.DEVICE, device.toMap());
     try {
       Device device = Device.fromMap(data);

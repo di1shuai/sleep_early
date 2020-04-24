@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sleep_early/api/device_api.dart';
 
 import 'package:sleep_early/models/device.dart';
 
@@ -64,7 +65,9 @@ class _DeviceCardState extends State<DeviceCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: device.isBinding()?Theme.of(context).accentColor:Theme.of(context).cardTheme.color,
+        color: device.isBinding()
+            ? Theme.of(context).accentColor
+            : Theme.of(context).cardTheme.color,
         elevation: 15.0, //设置阴影
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0))), //设置圆角
@@ -74,10 +77,10 @@ class _DeviceCardState extends State<DeviceCard> {
                 leading: getIcon(context),
                 trailing: CupertinoSwitch(
                   value: device.open,
-                  onChanged: (value) {
-                    setState(() {
-                      device.open = value;
-                    });
+                  onChanged: (value) async {
+                    device.open = value;
+                    device = await DeviceAPI.UpdateDevice(device);
+                    setState(() {});
                   },
                 ),
                 title: Row(children: <Widget>[
@@ -104,11 +107,13 @@ class _DeviceCardState extends State<DeviceCard> {
   Future<void> _selectTime(BuildContext context) async {
     final TimeOfDay picked =
         await showTimePicker(context: context, initialTime: _time);
-    if (picked != null && picked != _time)
+    if (picked != null && picked != _time) {
       print(" time -> ${_time.hour}:${_time.minute}");
-    setState(() {
       _time = picked;
-    });
+      device.time = _time.hour.toString() + ":" + _time.minute.toString();
+      device = await DeviceAPI.UpdateDevice(device);
+      setState(() {});
+    }
     if (picked == null) _time = TimeOfDay(hour: 22, minute: 30);
   }
 }
