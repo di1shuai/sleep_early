@@ -47,7 +47,7 @@ desktop为go-flutter
   - [x] windows
   - [x] linux
   - [x] mac
-- [ ] 设备绑定
+- [x] 设备绑定
 - [x] 全端适配
   - [x] android
   - [x] ios
@@ -55,3 +55,4 @@ desktop为go-flutter
   - [x] windows
   - [x] linux
   - [x] mac
+- [ ] 微信登录
