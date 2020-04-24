@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sleep_early/api/device_api.dart';
+import 'package:sleep_early/api/cron_api.dart';
 
 import 'package:sleep_early/models/device.dart';
 
@@ -62,6 +63,28 @@ class _DeviceCardState extends State<DeviceCard> {
     return result;
   }
 
+  void init() {
+    shutdownInit();
+  }
+
+  void shutdownInit() {
+    if (device.isBinding() && device.open == true) {
+      if (device.open == true) {
+        //设备为本设备，并且开启
+        CronAPI.scheduleShutdown(_time.hour, _time.minute);
+      } else {
+        //设备为本设备，并且关闭
+        CronAPI.scheduleShutdownCancel();
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -80,6 +103,7 @@ class _DeviceCardState extends State<DeviceCard> {
                   onChanged: (value) async {
                     device.open = value;
                     device = await DeviceAPI.UpdateDevice(device);
+                    shutdownInit();
                     setState(() {});
                   },
                 ),
@@ -108,10 +132,11 @@ class _DeviceCardState extends State<DeviceCard> {
     final TimeOfDay picked =
         await showTimePicker(context: context, initialTime: _time);
     if (picked != null && picked != _time) {
-      print(" time -> ${_time.hour}:${_time.minute}");
       _time = picked;
+      print(" time -> ${_time.hour}:${_time.minute}");
       device.time = _time.hour.toString() + ":" + _time.minute.toString();
       device = await DeviceAPI.UpdateDevice(device);
+      shutdownInit();
       setState(() {});
     }
     if (picked == null) _time = TimeOfDay(hour: 22, minute: 30);

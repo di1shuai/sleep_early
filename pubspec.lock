@@ -134,6 +134,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.1"
+  cron:
+    dependency: "direct main"
+    description:
+      name: cron
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "0.2.3"
   crypto:
     dependency: transitive
     description:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shutdown_platform/shutdown_platform.dart';
 import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/api/device_api.dart';
+import 'package:sleep_early/demo/cron_demo.dart';
 import 'package:sleep_early/demo/device_id.dart';
 import 'package:sleep_early/demo/device_info.dart';
 import 'package:sleep_early/demo/future_list_demo.dart';
@@ -12,6 +13,7 @@ import 'package:sleep_early/demo/provider_account.dart';
 import 'package:sleep_early/demo/provider_demo.dart';
 import 'package:sleep_early/demo/text_demo.dart';
 import 'package:sleep_early/demo/text_demo2.dart';
+import 'package:sleep_early/demo/time_demo.dart';
 import 'package:sleep_early/models/device.dart';
 import 'package:sleep_early/widgets/device_dialog.dart';
 
@@ -103,12 +105,31 @@ class _Menu extends State<DemoRoute> {
             },
           ),
           new ListTile(
+            title: new Text('timer'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(builder: (context) => new TimerDemo()),
+              );
+            },
+          ),
+          new ListTile(
             title: new Text('provider account'),
             onTap: () {
               Navigator.push(
                 context,
                 new MaterialPageRoute(
                     builder: (context) => new ProviderAccountAPP()),
+              );
+            },
+          ),
+          new ListTile(
+            title: new Text('cron demo'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new CronDemo()),
               );
             },
           ),

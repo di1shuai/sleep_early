@@ -35,6 +35,7 @@ dependencies:
   json_annotation: ^3.0.1
   shared_preferences: ^0.5.7
   dio: ^3.0.9
+  cron: ^0.2.3
 
 dev_dependencies:
   flutter_test:

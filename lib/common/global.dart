@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:cron/cron.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/models/account.dart';
 import 'package:sleep_early/models/profile.dart';
 
@@ -22,6 +22,9 @@ class Global {
   static List<MaterialColor> get themes => _themes;
 
   static String deviceId;
+
+  static Cron cron= new Cron();
+
 
   //初始化全局信息，会在APP启动时执行
   static Future init() async {
