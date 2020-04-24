@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:sleep_early/common/global.dart';
 
 class Device {
   int id;
@@ -106,4 +107,9 @@ class Device {
     int minute = int.parse(split[1]);
     return TimeOfDay(hour: hour, minute: minute);
   }
+
+  bool isBinding(){
+    return this.deviceId == Global.deviceId;
+  }
+
 }

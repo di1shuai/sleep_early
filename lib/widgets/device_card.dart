@@ -64,7 +64,7 @@ class _DeviceCardState extends State<DeviceCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: Theme.of(context).cardTheme.color,
+        color: device.isBinding()?Theme.of(context).accentColor:Theme.of(context).cardTheme.color,
         elevation: 15.0, //设置阴影
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0))), //设置圆角

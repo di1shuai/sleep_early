@@ -9,11 +9,10 @@ import 'api_url.dart';
 import 'api_util.dart';
 
 class DeviceAPI {
-
 // Device
 
   static Future<List<Device>> getDeviceList(Device device) async {
-    var data = await APIUtil.get(APIUrl.DEVICE,device.toMap());
+    var data = await APIUtil.get(APIUrl.DEVICE, device.toMap());
     try {
       List<Device> devices = toDeviceList(data);
       return devices;
@@ -73,4 +72,12 @@ class DeviceAPI {
     return list;
   }
 
+  static bool hasBinding(List<Device> devices) {
+    for (Device device in devices) {
+      if (device.isBinding()) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
