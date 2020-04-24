@@ -187,17 +187,28 @@ class HomeRoute extends StatelessWidget {
     if (API.isLogin(context)) {
       //已登录，则展示项目列表
       return FutureBuilder<List<Device>>(
-          future: API.getDeviceByAccountId(API.currentAccount(context).id),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasData) {
-                return ListView(
-                    children: snapshot.data.map((device) {
-                  DeviceCard(device: device);
-                }).toList());
-              }
+        future: API.getDeviceByAccountId(API.currentAccount(context).id),
+        builder: (BuildContext context, AsyncSnapshot<List<Device>> snapshot) {
+          // 请求已结束
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              // 请求失败，显示错误
+              return Text("Error: ${snapshot.error}");
+            } else {
+              // 请求成功，显示数据
+              List<Device> devices = snapshot.data;
+              return ListView.builder(
+                  itemCount: devices.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return DeviceCard(device: devices[index]);
+                  });
             }
-          });
+          } else {
+            // 请求未结束，显示loading
+            return CircularProgressIndicator();
+          }
+        },
+      );
     } else {
       //未登录
       return Center(

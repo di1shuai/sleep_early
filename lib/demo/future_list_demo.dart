@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/models/device.dart';
+import 'package:sleep_early/widgets/device_card.dart';
 
 class FutureListDemo extends StatelessWidget {
   @override
@@ -38,7 +39,7 @@ class _FutureListState extends State<FutureList> {
   Widget build(BuildContext context) {
     return FutureBuilder<List<Device>>(
       future: _future,
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Device>> snapshot) {
         // 请求已结束
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
@@ -46,7 +47,12 @@ class _FutureListState extends State<FutureList> {
             return Text("Error: ${snapshot.error}");
           } else {
             // 请求成功，显示数据
-            return Text("Contents: ${snapshot.data.toString()}");
+            // return Text("Contents: ${snapshot.data.toString()}");
+            return ListView.builder(
+              itemCount: snapshot.data.length,
+                itemBuilder: (BuildContext context, int index) {
+              return DeviceCard(device:snapshot.data[index]);
+            });
           }
         } else {
           // 请求未结束，显示loading

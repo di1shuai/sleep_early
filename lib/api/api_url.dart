@@ -1,6 +1,6 @@
 class APIUrl {
   
-  static const String BASE_URL = 'http://192.168.72.91:8888/api/';
+  static const String BASE_URL = 'http://192.168.72.91:8880/api/';
 
   static const String ACCOUNT =  'account/';
   

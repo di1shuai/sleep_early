@@ -52,7 +52,7 @@ class API {
   // Device
 
   static Future<List<Device>> getDeviceList(Device device) async {
-    var data = await APIUtil.get(APIUrl.DEVICE, device.toMap());
+    var data = await APIUtil.get(APIUrl.DEVICE,device.toMap());
     try {
       List<Device> devices = toDeviceList(data);
       return devices;
