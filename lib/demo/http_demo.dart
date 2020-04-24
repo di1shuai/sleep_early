@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:sleep_early/api/account_api.dart';
 import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/api/api_url.dart';
 import 'package:sleep_early/api/api_util.dart';
@@ -69,7 +70,7 @@ Future<Account> fetchAccountBaseURL(int id) async {
 
 Future<Account> fetchAccountAPI(int id) async {
   
-  Future<Account> futureAccount =  API.getAccount(id);
+  Future<Account> futureAccount =  AccountAPI.getAccount(id);
   return futureAccount;
 }
 

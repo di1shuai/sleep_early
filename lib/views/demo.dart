@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shutdown_platform/shutdown_platform.dart';
 import 'package:sleep_early/api/api.dart';
+import 'package:sleep_early/api/device_api.dart';
 import 'package:sleep_early/demo/device_id.dart';
 import 'package:sleep_early/demo/device_info.dart';
 import 'package:sleep_early/demo/future_list_demo.dart';
@@ -86,7 +87,7 @@ class _Menu extends State<DemoRoute> {
           new ListTile(
             title: new Text('future list go '),
             onTap: () async {
-              List<Device> data = await API.getDeviceByAccountId(1);
+              List<Device> data = await DeviceAPI.getDeviceByAccountId(1);
               for (Device device in data) {
                 print(device);
               }

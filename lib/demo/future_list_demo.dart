@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_early/api/api.dart';
+
+import 'package:sleep_early/api/device_api.dart';
 import 'package:sleep_early/models/device.dart';
 import 'package:sleep_early/widgets/device_card.dart';
 
@@ -32,7 +33,7 @@ class _FutureListState extends State<FutureList> {
   }
 
   init() {
-    _future = API.getDeviceByAccountId(1);
+    _future = DeviceAPI.getDeviceByAccountId(1);
   }
 
   @override
