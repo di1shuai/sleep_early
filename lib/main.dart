@@ -8,15 +8,17 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Global.init().then((e) => runApp(SleepEarly()));
 }
-// void main() => runApp(SleepEarly());
 
 class SleepEarly extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(
+          ChangeNotifierProvider<AccountProvider>(
             create: (_) => AccountProvider(),
+          ),
+          ChangeNotifierProvider<DeviceListProvider>(
+            create: (_) => DeviceListProvider(),
           )
         ],
         child: Consumer<AccountProvider>(builder: (context, pAccount, _) {

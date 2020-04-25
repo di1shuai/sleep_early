@@ -2,12 +2,27 @@ PODS:
   - device_info (0.0.1):
     - Flutter
   - Flutter (1.0.0)
+  - "permission_handler (5.0.0+hotfix.3)":
+    - Flutter
+  - platform_device_id (0.0.1):
+    - Flutter
+  - shared_preferences (0.0.1):
+    - Flutter
+  - shared_preferences_macos (0.0.1):
+    - Flutter
+  - shared_preferences_web (0.0.1):
+    - Flutter
   - shutdown_platform (0.0.1):
     - Flutter
 
 DEPENDENCIES:
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - Flutter (from `Flutter`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
+  - platform_device_id (from `.symlinks/plugins/platform_device_id/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - shared_preferences_macos (from `.symlinks/plugins/shared_preferences_macos/ios`)
+  - shared_preferences_web (from `.symlinks/plugins/shared_preferences_web/ios`)
   - shutdown_platform (from `.symlinks/plugins/shutdown_platform/ios`)
 
 EXTERNAL SOURCES:
@@ -15,12 +30,27 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/device_info/ios"
   Flutter:
     :path: Flutter
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
+  platform_device_id:
+    :path: ".symlinks/plugins/platform_device_id/ios"
+  shared_preferences:
+    :path: ".symlinks/plugins/shared_preferences/ios"
+  shared_preferences_macos:
+    :path: ".symlinks/plugins/shared_preferences_macos/ios"
+  shared_preferences_web:
+    :path: ".symlinks/plugins/shared_preferences_web/ios"
   shutdown_platform:
     :path: ".symlinks/plugins/shutdown_platform/ios"
 
 SPEC CHECKSUMS:
   device_info: cbf09d2ec12aa7110e0b09fabe54b5bd6c8efe74
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  permission_handler: 4a985b5448897c27fdeadde84f7452520c0e6c58
+  platform_device_id: 81b3e2993881f87d0c82ef151dc274df4869aef5
+  shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
+  shared_preferences_macos: f3f29b71ccbb56bf40c9dd6396c9acf15e214087
+  shared_preferences_web: 141cce0c3ed1a1c5bf2a0e44f52d31eeb66e5ea9
   shutdown_platform: 025331145d91c9ca11860607dad69b3d5f487ebf
 
 PODFILE CHECKSUM: c34e2287a9ccaa606aeceab922830efb9a6ff69a

@@ -23,8 +23,11 @@ class Global {
 
   static String deviceId;
 
-  static Cron cron= new Cron();
+  static const String refreshCronStr = "*/1 * * * *";
 
+  static Cron shutdownCron= new Cron();
+
+  static Cron refreshCron= new Cron();
 
   //初始化全局信息，会在APP启动时执行
   static Future init() async {

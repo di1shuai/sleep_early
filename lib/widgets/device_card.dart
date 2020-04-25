@@ -63,9 +63,7 @@ class _DeviceCardState extends State<DeviceCard> {
     return result;
   }
 
-  void init() {
-    shutdownInit();
-  }
+
 
   void shutdownInit() {
     if (device.isBinding() && device.open == true) {
@@ -82,7 +80,7 @@ class _DeviceCardState extends State<DeviceCard> {
   @override
   void initState() {
     super.initState();
-    init();
+    shutdownInit();
   }
 
   @override
