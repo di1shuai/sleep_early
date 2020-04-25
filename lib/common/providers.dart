@@ -42,6 +42,7 @@ class DeviceListProvider with ChangeNotifier {
     }
     _devices.clear();
     _devices.addAll(devices);
+    // print(devices);
     notifyListeners();
   }
 

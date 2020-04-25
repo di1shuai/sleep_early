@@ -151,7 +151,7 @@ class _Menu extends State<DemoRoute> {
               Navigator.push(
                 context,
                 new MaterialPageRoute(
-                    builder: (context) => new ListViewDemo()),
+                    builder: (context) => new ListViewDemoApp()),
               );
             },
           ),
