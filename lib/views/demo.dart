@@ -11,6 +11,7 @@ import 'package:sleep_early/demo/key_demo.dart';
 import 'package:sleep_early/demo/permission_demo.dart';
 import 'package:sleep_early/demo/provider_account.dart';
 import 'package:sleep_early/demo/provider_demo.dart';
+import 'package:sleep_early/demo/shard_preference_demo.dart';
 import 'package:sleep_early/demo/text_demo.dart';
 import 'package:sleep_early/demo/text_demo2.dart';
 import 'package:sleep_early/demo/time_demo.dart';
@@ -130,6 +131,16 @@ class _Menu extends State<DemoRoute> {
                 context,
                 new MaterialPageRoute(
                     builder: (context) => new CronDemo()),
+              );
+            },
+          ),
+          new ListTile(
+            title: new Text('ShardPreference demo'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new ShardPreferenceDemo()),
               );
             },
           ),

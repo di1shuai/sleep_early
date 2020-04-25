@@ -25,11 +25,7 @@ class API {
 
   static bool isLogin(BuildContext context) {
     AccountProvider proAccount = Provider.of<AccountProvider>(context);
-    bool isLogin = false;
-    if (proAccount.account != null) {
-      isLogin = true;
-    }
-    return isLogin;
+    return proAccount.isLogin;
   }
   
 }

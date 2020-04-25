@@ -3,15 +3,33 @@ import 'package:sleep_early/api/account_api.dart';
 import 'package:sleep_early/api/device_api.dart';
 import 'package:sleep_early/models/account.dart';
 import 'package:sleep_early/models/device.dart';
+import 'package:sleep_early/models/profile.dart';
 
-class AccountProvider with ChangeNotifier {
-  Account _account;
+import 'global.dart';
 
-  Account get account => this._account;
+class ProfileChangeNotifier extends ChangeNotifier {
+  Profile get _profile => Global.profile;
+
+  @override
+  void notifyListeners() {
+    Global.saveProfile(); //保存Profile变更
+    super.notifyListeners(); //通知依赖的Widget更新
+  }
+}
+
+
+class AccountProvider extends ProfileChangeNotifier {
+
+  Account get account => this._profile.account;
+
+  bool get isLogin => account != null;
 
   set account(Account account) {
-    this._account = account;
-    notifyListeners();
+    if (account?.id != Global.profile.account?.id) {
+      Global.profile.lastLoginId = Global.profile.account?.id;
+      Global.profile.account = account;
+      notifyListeners();
+    }
   }
 }
 
