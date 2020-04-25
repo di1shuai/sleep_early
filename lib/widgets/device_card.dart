@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sleep_early/api/device_api.dart';
-import 'package:sleep_early/api/cron_api.dart';
+import 'package:sleep_early/common/providers.dart';
 
 import 'package:sleep_early/models/device.dart';
 
-class DeviceCard extends StatefulWidget {
+class DeviceCard extends StatelessWidget {
   Device device;
 
   DeviceCard({
@@ -14,22 +15,67 @@ class DeviceCard extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _DeviceCardState createState() => _DeviceCardState(device: device);
-}
+  Widget build(BuildContext context) {
+    return Consumer<DeviceListProvider>(builder: (context, dList, child) {
+      return Card(
+          color: device.isBinding()
+              ? Theme.of(context).accentColor
+              : Theme.of(context).cardTheme.color,
+          elevation: 15.0, //设置阴影
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0))),
+          child: SizedBox(
+              height: 60.0, //设置高度
+              child: SwitchListTile(
+                  title: Row(
+                    children: <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: Text(device.deviceName,
+                            style:
+                                Theme.of(context).primaryTextTheme.bodyText1),
+                      ),
+                      Expanded(
+                          flex: 1,
+                          child: FlatButton(
+                              child: Text(
+                                device.time,
+                                style:
+                                    Theme.of(context).primaryTextTheme.button,
+                              ),
+                              onPressed:  () async {
+                                final TimeOfDay picked = await showTimePicker(
+                                    context: context,
+                                    initialTime: device.getTimeOfDay());
+                                if (picked != null &&
+                                    picked != device.getTimeOfDay()) {
+                                  device.setTimeOfDay(picked);
+                                  print(" time -> ${device.time}");
+                                  device = await DeviceAPI.UpdateDevice(device);
+                                  dList.refresh(context);
+                                }
+                                if (picked == null) {
+                                  device.setTimeOfDay(
+                                      TimeOfDay(hour: 22, minute: 30));
+                                  print(" time -> ${device.time}");
+                                  device = await DeviceAPI.UpdateDevice(device);
+                                  dList.refresh(context);
+                                }
+                              }))
+                    ],
+                  ),
+                  value: device.open,
+                  secondary: getIcon(context),
+                  onChanged: (value) async {
+                    device.open = value;
+                    await DeviceAPI.UpdateDevice(device);
+                    dList.refresh(context);
+                  })));
+    });
+  }
 
-class _DeviceCardState extends State<DeviceCard> {
-  Device device;
-
-  TimeOfDay _time;
-
-  _DeviceCardState({Key key, this.device}) {
-    this.device = device;
-    if (this.device != null) {
-      List timeArr = device.time.split(':');
-      int hour = int.parse(timeArr[0]);
-      int minute = int.parse(timeArr[1]);
-      this._time = TimeOfDay(hour: hour, minute: minute);
-    }
+  _selectTime(){
+    
   }
 
   Icon getIcon(BuildContext context) {
@@ -61,82 +107,5 @@ class _DeviceCardState extends State<DeviceCard> {
             color: Theme.of(context).iconTheme.color);
     }
     return result;
-  }
-
-
-
-  void shutdownInit() {
-    if (device.isBinding()) {
-      if (device.open == true) {
-        //设备为本设备，并且开启
-        CronAPI.scheduleShutdown(_time.hour, _time.minute);
-      } else {
-        //设备为本设备，并且关闭
-        CronAPI.scheduleShutdownCancel();
-      }
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    shutdownInit();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-        color: device.isBinding()
-            ? Theme.of(context).accentColor
-            : Theme.of(context).cardTheme.color,
-        elevation: 15.0, //设置阴影
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0))), //设置圆角
-        child: SizedBox(
-            height: 60.0, //设置高度
-            child: ListTile(
-                leading: getIcon(context),
-                trailing: CupertinoSwitch(
-                  value: device.open,
-                  onChanged: (value) async {
-                    device.open = value;
-                    device = await DeviceAPI.UpdateDevice(device);
-                    shutdownInit();
-                    setState(() {});
-                  },
-                ),
-                title: Row(children: <Widget>[
-                  Expanded(
-                    flex: 2,
-                    child: Text(device.deviceName,
-                        style: Theme.of(context).primaryTextTheme.bodyText1),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: FlatButton(
-                      child: Text(
-                        '${_time.hour}:${_time.minute}',
-                        style: Theme.of(context).primaryTextTheme.button,
-                      ),
-                      onPressed: () {
-                        _selectTime(context);
-                      },
-                    ),
-                  ),
-                ]))));
-  }
-
-  Future<void> _selectTime(BuildContext context) async {
-    final TimeOfDay picked =
-        await showTimePicker(context: context, initialTime: _time);
-    if (picked != null && picked != _time) {
-      _time = picked;
-      print(" time -> ${_time.hour}:${_time.minute}");
-      device.time = _time.hour.toString() + ":" + _time.minute.toString();
-      device = await DeviceAPI.UpdateDevice(device);
-      shutdownInit();
-      setState(() {});
-    }
-    if (picked == null) _time = TimeOfDay(hour: 22, minute: 30);
   }
 }

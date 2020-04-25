@@ -7,6 +7,7 @@ import 'package:sleep_early/models/device.dart';
 
 import 'api_url.dart';
 import 'api_util.dart';
+import 'cron_api.dart';
 
 class DeviceAPI {
 // Device
@@ -46,9 +47,22 @@ class DeviceAPI {
     var data = await APIUtil.put(APIUrl.DEVICE, device.toMap());
     try {
       Device device = Device.fromMap(data);
+      shutdownInit(device);
       return device;
     } catch (err) {
       throw Exception('Failed to load Device');
+    }
+  }
+
+  static  void shutdownInit(Device device) {
+    if (device.isBinding()) {
+      if (device.open == true) {
+        //设备为本设备，并且开启
+        CronAPI.scheduleShutdown(device.getTimeOfDay().hour, device.getTimeOfDay().minute);
+      } else {
+        //设备为本设备，并且关闭
+        CronAPI.scheduleShutdownCancel();
+      }
     }
   }
 

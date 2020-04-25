@@ -108,8 +108,11 @@ class Device {
     return TimeOfDay(hour: hour, minute: minute);
   }
 
-  bool isBinding(){
-    return this.deviceId == Global.deviceId;
+  setTimeOfDay(TimeOfDay _time) {
+    this.time = _time.hour.toString() + ":" + _time.minute.toString();
   }
 
+  bool isBinding() {
+    return this.deviceId == Global.deviceId;
+  }
 }
