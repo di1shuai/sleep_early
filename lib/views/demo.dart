@@ -8,6 +8,7 @@ import 'package:sleep_early/demo/device_info.dart';
 import 'package:sleep_early/demo/future_list_demo.dart';
 import 'package:sleep_early/demo/http_demo.dart';
 import 'package:sleep_early/demo/key_demo.dart';
+import 'package:sleep_early/demo/listview_demo.dart';
 import 'package:sleep_early/demo/permission_demo.dart';
 import 'package:sleep_early/demo/provider_account.dart';
 import 'package:sleep_early/demo/provider_demo.dart';
@@ -141,6 +142,16 @@ class _Menu extends State<DemoRoute> {
                 context,
                 new MaterialPageRoute(
                     builder: (context) => new ShardPreferenceDemo()),
+              );
+            },
+          ),
+          new ListTile(
+            title: new Text('List View demo'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new ListViewDemo()),
               );
             },
           ),

@@ -21,27 +21,32 @@ class _DeviceCardList extends State<DeviceCardList> {
   }
 
   void init() {
-    Future<List<Device>> devicesFuture =
-        DeviceAPI.getDeviceByAccountId(AccountAPI.currentAccount(context).id);
-    devicesFuture.then((value) {
-      Provider.of<DeviceListProvider>(context, listen: false).devices = value;
-      CronAPI.refreshDeviceList(context);
-    });
+    DeviceListProvider dl =
+        Provider.of<DeviceListProvider>(context, listen: false);
+    dl.refresh(context);
+    CronAPI.refreshDeviceList(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<DeviceListProvider>(builder: (context, dList, _) {
+    return Consumer<DeviceListProvider>(builder: (context, dList, child) {
       if (dList.devices == null) {
         return Center(
           child: CircularProgressIndicator(),
         );
       } else {
-        return ListView.builder(
-            itemCount: dList.devices.length,
-            itemBuilder: (BuildContext context, int index) {
-              return DeviceCard(device: dList.devices[index]);
+        return RefreshIndicator(
+          onRefresh: () async {
+            setState((){
+               dList.refresh(context);
             });
+          },
+          child: new ListView.builder(
+              itemCount: dList.devices.length,
+              itemBuilder: (BuildContext context, int index) {
+                return new DeviceCard(device: dList.devices[index]);
+              }),
+        );
       }
     });
   }

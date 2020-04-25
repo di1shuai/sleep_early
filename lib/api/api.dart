@@ -1,14 +1,10 @@
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:platform_device_id/platform_device_id.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/api_url.dart';
 import 'package:sleep_early/api/api_util.dart';
-import 'package:sleep_early/common/global.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/models/account.dart';
-import 'package:sleep_early/models/device.dart';
 
 class API {
   // Login

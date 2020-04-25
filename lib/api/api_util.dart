@@ -13,7 +13,7 @@ Map<String, dynamic> optHeader = {
 BaseOptions baseOptions = BaseOptions(
     connectTimeout: 30000, headers: optHeader, baseUrl: APIUrl.BASE_URL);
 
-bool isProxy = false;
+bool isProxy = true;
 
 var dio = new Dio(baseOptions);
 

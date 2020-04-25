@@ -17,9 +17,7 @@ class ProfileChangeNotifier extends ChangeNotifier {
   }
 }
 
-
 class AccountProvider extends ProfileChangeNotifier {
-
   Account get account => this._profile.account;
 
   bool get isLogin => account != null;
@@ -38,16 +36,21 @@ class DeviceListProvider with ChangeNotifier {
 
   List<Device> get devices => this._devices;
 
-  set devices(List<Device> _devices) {
-    this._devices = _devices;
+  set devices(List<Device> devices) {
+    if (_devices == null) {
+      _devices = List<Device>();
+    }
+    _devices.clear();
+    _devices.addAll(devices);
     notifyListeners();
   }
 
-  refresh(BuildContext context) {
-    Future<List<Device>> devicesFuture =
-        DeviceAPI.getDeviceByAccountId(AccountAPI.currentAccount(context).id);
-    devicesFuture.then((value) {
-      devices = value;
-    });
+  bool get isInit {
+    return _devices != null;
+  }
+
+  refresh(BuildContext context) async {
+    devices = await DeviceAPI.getDeviceByAccountId(
+        AccountAPI.currentAccount(context).id);
   }
 }

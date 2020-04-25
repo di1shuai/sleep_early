@@ -33,6 +33,8 @@ class CronAPI {
 
   static refreshDeviceList(BuildContext context) {
     //每分钟刷新一下
+    Global.refreshCron.close();
+    Global.refreshCron = new Cron();
     Global.refreshCron.schedule(Schedule.parse(Global.refreshCronStr), () {
       Future<List<Device>> devicesFuture =
           DeviceAPI.getDeviceByAccountId(AccountAPI.currentAccount(context).id);
