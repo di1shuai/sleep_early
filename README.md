@@ -35,18 +35,9 @@ desktop为go-flutter
 
 <div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png" width="482" height="698" alt="select"/></div>
 
-
-
-## Todo
+## Done
 
 - [x] Home界面
-- [ ] 关机功能
-  - [ ] android
-  - [ ] ios
-  - [ ] ipad
-  - [x] windows
-  - [x] linux
-  - [x] mac
 - [x] 设备绑定
 - [x] 全端适配
   - [x] android
@@ -55,4 +46,15 @@ desktop为go-flutter
   - [x] windows
   - [x] linux
   - [x] mac
+- [ ] 关机功能
+  - [x] windows
+  - [x] linux
+  - [x] mac
+
+
+## Todo
+
+- [ ] 关机功能
+  - [ ] android
+  - [ ] ios
 - [ ] 微信登录
