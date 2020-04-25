@@ -66,7 +66,7 @@ class _DeviceCardState extends State<DeviceCard> {
 
 
   void shutdownInit() {
-    if (device.isBinding() && device.open == true) {
+    if (device.isBinding()) {
       if (device.open == true) {
         //设备为本设备，并且开启
         CronAPI.scheduleShutdown(_time.hour, _time.minute);
