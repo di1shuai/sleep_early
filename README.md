@@ -8,17 +8,15 @@
 
 ## 描述
 
-无奈最近因为各种事情而导致拖延晚于`10:30`睡觉，有时是`mac`或者`win10`上的代码，有时是`ipad`里的剧，有时是`电话`里的女友，所以希望能有个强制性的监督管理机制，强迫自己关机睡觉
+无奈最近因为各种事情而导致拖延晚于`10:30`睡觉，
+有时是`mac`或者`win10`上的代码，
+有时是`ipad`里的剧，
+有时是`电话`里的女友，
+所以希望能有个强制性的监督管理机制，强迫自己关机睡觉
 
 ## 运行
 
-#### Flutter
-
-主体为flutter项目
-
-#### Go-Flutter
-
-desktop为go-flutter
+主体为[flutter](https://github.com/flutter/flutter)项目,Desktop使用的是[go-flutter](https://github.com/go-flutter-desktop/go-flutter#getting-started)
 
 
 ## 界面
@@ -39,22 +37,30 @@ desktop为go-flutter
 
 - [x] Home界面
 - [x] 设备绑定
-- [x] 全端适配
+- [x] 全端(os)适配
   - [x] android
   - [x] ios
-  - [x] ipad
   - [x] windows
   - [x] linux
-  - [x] mac
-- [ ] 关机功能
+  - [x] macos
+- [x] 定时关机
   - [x] windows
   - [x] linux
-  - [x] mac
-
+  - [x] macos
+- [x] 登录
+  - [x] email 
 
 ## Todo
 
-- [ ] 关机功能
+- [ ] 未登录
+  - [ ] 仅控制本设备
+- [ ] 定时关机
   - [ ] android
   - [ ] ios
-- [ ] 微信登录
+
+## Delay
+
+- [ ] 登录
+  - [ ] phone
+  - [ ] github
+  - [ ] wechat
