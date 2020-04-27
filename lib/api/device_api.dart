@@ -54,13 +54,15 @@ class DeviceAPI {
     }
   }
 
-  static  void shutdownInit(Device device) {
+  static void shutdownInit(Device device) {
+    // 设备为本设备
     if (device.isBinding()) {
       if (device.open == true) {
-        //设备为本设备，并且开启
-        CronAPI.scheduleShutdown(device.getTimeOfDay().hour, device.getTimeOfDay().minute);
+        //开启
+        CronAPI.scheduleShutdown(
+            device.getTimeOfDay().hour, device.getTimeOfDay().minute);
       } else {
-        //设备为本设备，并且关闭
+        //关闭
         CronAPI.scheduleShutdownCancel();
       }
     }

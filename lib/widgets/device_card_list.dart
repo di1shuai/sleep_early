@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_early/api/account_api.dart';
 import 'package:sleep_early/api/cron_api.dart';
-import 'package:sleep_early/api/device_api.dart';
 import 'package:sleep_early/common/providers.dart';
-import 'package:sleep_early/models/device.dart';
 
 import 'device_card.dart';
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_early/api/api.dart';
+import 'package:sleep_early/api/sign_api.dart';
 import 'package:sleep_early/common/routes.dart';
 import 'package:sleep_early/models/account.dart';
+import 'package:sleep_early/models/enums/identity_type.dart';
+import 'package:sleep_early/models/sign.dart';
 
 // provider
 
@@ -74,7 +76,7 @@ class _UPInputState extends State<UPInput> {
       FlatButton(
         onPressed: () async {
           Account account =
-              await API.login(_unameController.text, _upassController.text);
+              await SignAPI.signin(Sign(username: _unameController.text, password:_upassController.text,identityType: IdentityType.EMAIL));
           print(account);
           Provider.of<ProviderAccount>(context, listen: false).account =
               account;

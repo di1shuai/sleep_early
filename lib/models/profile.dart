@@ -6,13 +6,13 @@ class Profile {
   Account account;
   String token;
   int theme;
-  int lastLoginId;
+  int lastSigninId;
   String locale;
   Profile({
     this.account,
     this.token,
     this.theme,
-    this.lastLoginId,
+    this.lastSigninId,
     this.locale,
   });
 
@@ -20,24 +20,24 @@ class Profile {
     Account account,
     String token,
     int theme,
-    int lastLoginId,
+    int lastSigninId,
     String locale,
   }) {
     return Profile(
       account: account ?? this.account,
       token: token ?? this.token,
       theme: theme ?? this.theme,
-      lastLoginId: lastLoginId ?? this.lastLoginId,
+      lastSigninId: lastSigninId ?? this.lastSigninId,
       locale: locale ?? this.locale,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'account': account.toMap(),
+      'account': account?.toMap(),
       'token': token,
       'theme': theme,
-      'lastLoginId': lastLoginId,
+      'lastSigninId': lastSigninId,
       'locale': locale,
     };
   }
@@ -49,7 +49,7 @@ class Profile {
       account: Account.fromMap(map['account']),
       token: map['token'],
       theme: map['theme'],
-      lastLoginId: map['lastLoginId'],
+      lastSigninId: map['lastSigninId'],
       locale: map['locale'],
     );
   }
@@ -60,7 +60,7 @@ class Profile {
 
   @override
   String toString() {
-    return 'Profile(account: $account, token: $token, theme: $theme, lastLoginId: $lastLoginId, locale: $locale)';
+    return 'Profile(account: $account, token: $token, theme: $theme, lastSigninId: $lastSigninId, locale: $locale)';
   }
 
   @override
@@ -71,7 +71,7 @@ class Profile {
       o.account == account &&
       o.token == token &&
       o.theme == theme &&
-      o.lastLoginId == lastLoginId &&
+      o.lastSigninId == lastSigninId &&
       o.locale == locale;
   }
 
@@ -80,7 +80,7 @@ class Profile {
     return account.hashCode ^
       token.hashCode ^
       theme.hashCode ^
-      lastLoginId.hashCode ^
+      lastSigninId.hashCode ^
       locale.hashCode;
   }
 }

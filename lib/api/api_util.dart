@@ -13,11 +13,21 @@ Map<String, dynamic> optHeader = {
 BaseOptions baseOptions = BaseOptions(
     connectTimeout: 30000, headers: optHeader, baseUrl: APIUrl.BASE_URL);
 
-bool isProxy = true;
+//需要抓包的话请打开
+bool isProxy = false;
 
 var dio = new Dio(baseOptions);
 
 class APIUtil {
+  static void _proxy() {
+    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+        (HttpClient client) {
+      client.findProxy = (uri) {
+        return "PROXY 192.168.72.91:8888";
+      };
+    };
+  }
+
   static Future get(String url, [Map<String, dynamic> params]) async {
     print('-------  url : $url  -------');
     Response response;
@@ -50,15 +60,6 @@ class APIUtil {
       apiResponse = APIResponse.fromMap(response.data);
     }
     return apiResponse.data;
-  }
-
-  static void _proxy() {
-    (dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.findProxy = (uri) {
-        return "PROXY 192.168.72.91:8888";
-      };
-    };
   }
 
   static Future put(String url, [Map<String, dynamic> params]) async {

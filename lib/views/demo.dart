@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shutdown_platform/shutdown_platform.dart';
-import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/api/device_api.dart';
 import 'package:sleep_early/demo/cron_demo.dart';
 import 'package:sleep_early/demo/device_id.dart';

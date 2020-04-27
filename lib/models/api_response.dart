@@ -68,30 +68,30 @@ class APIResponse {
 
 class Error {
 
-  String message;
+  int errorCode;
 
-  String detail;
+  String errorMsg;
   
   Error({
-    this.message,
-    this.detail,
+    this.errorCode,
+    this.errorMsg,
   });
 
 
   Error copyWith({
-    String message,
-    String detail,
+    int errorCode,
+    String errorMsg,
   }) {
     return Error(
-      message: message ?? this.message,
-      detail: detail ?? this.detail,
+      errorCode: errorCode ?? this.errorCode,
+      errorMsg: errorMsg ?? this.errorMsg,
     );
   }
 
   Map<String, dynamic> toMap() {
     return {
-      'message': message,
-      'detail': detail,
+      'errorCode': errorCode,
+      'errorMsg': errorMsg,
     };
   }
 
@@ -99,8 +99,8 @@ class Error {
     if (map == null) return null;
   
     return Error(
-      message: map['message'],
-      detail: map['detail'],
+      errorCode: map['errorCode'],
+      errorMsg: map['errorMsg'],
     );
   }
 
@@ -109,17 +109,17 @@ class Error {
   static Error fromJson(String source) => fromMap(json.decode(source));
 
   @override
-  String toString() => 'Error(message: $message, detail: $detail)';
+  String toString() => 'Error(errorCode: $errorCode, errorMsg: $errorMsg)';
 
   @override
   bool operator ==(Object o) {
     if (identical(this, o)) return true;
   
     return o is Error &&
-      o.message == message &&
-      o.detail == detail;
+      o.errorCode == errorCode &&
+      o.errorMsg == errorMsg;
   }
 
   @override
-  int get hashCode => message.hashCode ^ detail.hashCode;
+  int get hashCode => errorCode.hashCode ^ errorMsg.hashCode;
 }

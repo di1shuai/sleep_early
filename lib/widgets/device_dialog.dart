@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:platform_device_id/platform_device_id.dart';
-import 'package:sleep_early/api/api.dart';
 import 'package:sleep_early/api/device_api.dart';
 import 'package:sleep_early/models/device.dart';
 

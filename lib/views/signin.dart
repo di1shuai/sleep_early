@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sleep_early/api/api.dart';
+import 'package:sleep_early/api/sign_api.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/common/routes.dart';
 import 'package:sleep_early/models/account.dart';
+import 'package:sleep_early/models/enums/identity_type.dart';
+import 'package:sleep_early/models/sign.dart';
 
-class LoginRoute extends StatefulWidget {
+class SigninRoute extends StatefulWidget {
   @override
-  _LoginRouteState createState() => _LoginRouteState();
+  _SigninRouteState createState() => _SigninRouteState();
 }
 
-class _LoginRouteState extends State<LoginRoute> {
+class _SigninRouteState extends State<SigninRoute> {
   TextEditingController _unameController = TextEditingController();
   TextEditingController _upassController = TextEditingController();
 
@@ -26,7 +28,7 @@ class _LoginRouteState extends State<LoginRoute> {
           controller: _unameController,
           decoration: InputDecoration(
               labelText: "用户名",
-              hintText: "用户名或邮箱",
+              hintText: "邮箱",
               prefixIcon: Icon(Icons.person)),
         ),
         TextField(
@@ -42,7 +44,7 @@ class _LoginRouteState extends State<LoginRoute> {
         FlatButton(
           onPressed: () async {
             Account account =
-                await API.login(_unameController.text, _upassController.text);
+                await SignAPI.signin(Sign(username:_unameController.text, password:_upassController.text,identityType:IdentityType.EMAIL));
             Provider.of<AccountProvider>(context, listen: false).account =
                 account;
             Navigator.pushNamedAndRemoveUntil(

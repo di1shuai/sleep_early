@@ -20,11 +20,11 @@ class ProfileChangeNotifier extends ChangeNotifier {
 class AccountProvider extends ProfileChangeNotifier {
   Account get account => this._profile.account;
 
-  bool get isLogin => account != null;
+  bool get isSignin => account != null;
 
   set account(Account account) {
     if (account?.id != Global.profile.account?.id) {
-      Global.profile.lastLoginId = Global.profile.account?.id;
+      Global.profile.lastSigninId = Global.profile.account?.id;
       Global.profile.account = account;
       notifyListeners();
     }
@@ -42,12 +42,7 @@ class DeviceListProvider with ChangeNotifier {
     }
     _devices.clear();
     _devices.addAll(devices);
-    // print(devices);
     notifyListeners();
-  }
-
-  bool get isInit {
-    return _devices != null;
   }
 
   refresh(BuildContext context) async {

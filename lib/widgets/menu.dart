@@ -55,7 +55,7 @@ class Menu extends StatelessWidget {
                   ListTile(
                     leading: const Icon(Icons.ac_unit),
                     title: const Text('Login'),
-                    onTap: () => Navigator.of(context).pushNamed( Routes.LOGIN_ROUTE),
+                    onTap: () => Navigator.of(context).pushNamed( Routes.SIGNIN_ROUTE),
                   ),
                 ],
               ),

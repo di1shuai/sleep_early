@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sleep_early/api/api.dart';
-import 'package:sleep_early/views/login.dart';
+import 'package:sleep_early/api/sign_api.dart';
+import 'package:sleep_early/views/signin.dart';
 import 'package:sleep_early/widgets/device_card_list.dart';
 import 'package:sleep_early/widgets/menu.dart';
 
@@ -9,7 +9,7 @@ import 'package:sleep_early/widgets/show_binding.dart';
 class HomeRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    if (API.isLogin(context)) {
+    if (SignAPI.isSignin(context)) {
       //登录
 
       return Scaffold(
@@ -27,7 +27,7 @@ class HomeRoute extends StatelessWidget {
       );
     } else {
       //未登录
-      return LoginRoute();
+      return SigninRoute();
     }
   }
 }
