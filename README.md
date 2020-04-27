@@ -51,16 +51,20 @@
   - [x] email 
 
 ## Todo
-
+- [ ] 注册
+  - [ ] email
 - [ ] 未登录
   - [ ] 仅控制本设备
 - [ ] 定时关机
   - [ ] android
   - [ ] ios
+- [ ] 第三方登录
+  - [ ] github
 
 ## Delay
-
+- [ ] 注册
+  - [ ] phone
 - [ ] 登录
   - [ ] phone
-  - [ ] github
+- [ ] 第三方登录
   - [ ] wechat
