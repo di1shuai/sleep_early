@@ -92,6 +92,45 @@ class _DeviceDialogState extends State<DeviceDialog> {
   }
 }
 
+Future<bool> showUpdateDialog(BuildContext context,Device device) async {
+  
+  final GlobalKey<_DeviceDialogState> key = GlobalKey();
+
+  DeviceDialog dialog =
+      new DeviceDialog(key: key, device: device, isCreate: false);
+
+  
+  return showDialog<bool>(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        title: Text("设备名称"),
+        content: dialog,
+        actions: <Widget>[
+          FlatButton(
+            child: Text("取消"),
+            onPressed: () => Navigator.of(context).pop(false),
+          ),
+          FlatButton(
+            child: Text("绑定"),
+            onPressed: () async {
+              Device device =
+                  await DeviceAPI.UpdateDevice(key.currentState._device);
+              if (device != null) {
+                Navigator.of(context).pop(true);
+              } else {
+                Navigator.of(context).pop(false);
+              }
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
+
+
+
 Future<bool> showCreateDialog(BuildContext context) async {
   Device _device_init = DeviceAPI.getInitDevice(context);
 

@@ -113,3 +113,46 @@ class _PasswordTState extends State<PasswordT> {
         ]);
   }
 }
+
+class DeviceNameT extends StatelessWidget {
+  final TextEditingController controller;
+
+  final String oldDeviceName;
+
+  final Icon icon;
+
+  const DeviceNameT({
+    Key key,
+    this.controller,
+    this.oldDeviceName,
+    this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+        autofocus: true,
+        maxLength: 12,
+        controller: controller,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(10.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            labelText: "设备名称",
+            hintText: oldDeviceName,
+            prefixIcon: icon),
+        validator: (value) {
+          if (value.trim().isEmpty) {
+            return "设备名不能为空";
+          } else if (value.trim().length < 1) {
+            return "设备名不能少于1位";
+          }
+          return null;
+        },
+        inputFormatters: [
+          WhitelistingTextInputFormatter(
+              RegExp("[a-z,A-Z,0-9,@,.,_]|[\u4e00-\u9fa5]|"))
+        ]);
+  }
+}

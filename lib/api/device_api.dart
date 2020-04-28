@@ -55,6 +55,20 @@ class DeviceAPI {
     }
   }
 
+  static Future<bool> DeleteDevice(Device device) async {
+    var data = await APIUtil.delete(APIUrl.DEVICE + device.id.toString());
+    try {
+      if (data == null) {
+        device.isBinding() ? CronAPI.scheduleShutdownCancel() : null;
+        return true;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      throw Exception('Failed to delete Device');
+    }
+  }
+
   static void shutdownInit(Device device) {
     // 设备为本设备
     if (device.isBinding()) {

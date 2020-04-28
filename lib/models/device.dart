@@ -115,4 +115,35 @@ class Device {
   bool isBinding() {
     return this.deviceId == Global.deviceId;
   }
+
+   Icon getIcon(BuildContext context) {
+    Icon result;
+    switch (platform) {
+      case 'MACOS':
+        result =
+            Icon(Icons.desktop_mac, color: Theme.of(context).iconTheme.color);
+        break;
+      case 'WINDOWS':
+        result = Icon(Icons.desktop_windows,
+            color: Theme.of(context).iconTheme.color);
+        break;
+      case 'LINUX':
+        result =
+            Icon(Icons.tablet_mac, color: Theme.of(context).iconTheme.color);
+        break;
+      case 'IOS':
+        result =
+            Icon(Icons.phone_iphone, color: Theme.of(context).iconTheme.color);
+        break;
+      case 'ANDROID':
+        result =
+            Icon(Icons.phone_android, color: Theme.of(context).iconTheme.color);
+        break;
+
+      default:
+        result = Icon(Icons.device_unknown,
+            color: Theme.of(context).iconTheme.color);
+    }
+    return result;
+  }
 }
