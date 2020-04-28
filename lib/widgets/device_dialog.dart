@@ -31,14 +31,11 @@ class _DeviceDialogState extends State<DeviceDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        ListTile(
-          title: Text('平台: ' + _device.platform),
-        ),
-        TextField(
+    final platformT = ListTile(
+      title: Text('平台: ' + _device.platform),
+    );
+
+    final deviceNameT =  TextField(
           autofocus: false,
           maxLength: 12,
           decoration: InputDecoration(
@@ -50,8 +47,8 @@ class _DeviceDialogState extends State<DeviceDialog> {
               _device.deviceName = value;
             })
           },
-        ),
-        FlatButton(
+        );
+    final timeT = FlatButton(
           child: Text(
             '${_time.hour}:${_time.minute}',
             style: Theme.of(context).primaryTextTheme.button,
@@ -59,15 +56,24 @@ class _DeviceDialogState extends State<DeviceDialog> {
           onPressed: () {
             _selectTime(context);
           },
-        ),
-        CupertinoSwitch(
+        );
+    final openT =  CupertinoSwitch(
           value: _device.open,
           onChanged: (value) {
             setState(() {
               _device.open = value;
             });
           },
-        )
+        );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        // platformT,
+        deviceNameT,
+        // timeT,
+        // openT
       ],
     );
   }
@@ -108,7 +114,8 @@ Future<bool> showCreateDialog(BuildContext context) async {
           FlatButton(
             child: Text("绑定"),
             onPressed: () async {
-              Device device = await DeviceAPI.CreateDevice(key.currentState._device);
+              Device device =
+                  await DeviceAPI.CreateDevice(key.currentState._device);
               if (device != null) {
                 Navigator.of(context).pop(true);
               } else {

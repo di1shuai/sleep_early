@@ -42,6 +42,11 @@ class APIUtil {
     }
     if (response.statusCode == 200) {
       apiResponse = APIResponse.fromMap(response.data);
+      if (apiResponse.code == 0) {
+        return apiResponse.data;
+      } else if (apiResponse.code == 1) {
+        print(apiResponse.error);
+      }
     } else {
       print(response.data.toString());
     }
@@ -58,6 +63,11 @@ class APIUtil {
     response = await dio.post(url, data: params);
     if (response.statusCode == 200) {
       apiResponse = APIResponse.fromMap(response.data);
+      if (apiResponse.code == 0) {
+        return apiResponse.data;
+      } else if (apiResponse.code == 1) {
+        print(apiResponse.error);
+      }
     }
     return apiResponse.data;
   }
@@ -73,6 +83,11 @@ class APIUtil {
     response = await dio.put(url, data: params);
     if (response.statusCode == 200) {
       apiResponse = APIResponse.fromMap(response.data);
+      if (apiResponse.code == 0) {
+        return apiResponse.data;
+      } else if (apiResponse.code == 1) {
+        print(apiResponse.error);
+      }
     }
     return apiResponse.data;
   }
@@ -88,6 +103,11 @@ class APIUtil {
     response = await dio.delete(url);
     if (response.statusCode == 200) {
       apiResponse = APIResponse.fromMap(response.data);
+      if (apiResponse.code == 0) {
+        return apiResponse.data;
+      } else if (apiResponse.code == 1) {
+        print(apiResponse.error);
+      }
     }
     return apiResponse.data;
   }

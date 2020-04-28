@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/sign_api.dart';
@@ -18,7 +19,7 @@ class _SignupRouteState extends State<SignupRoute> {
   TextEditingController _usernameC = TextEditingController();
   TextEditingController _passwordC = TextEditingController();
   TextEditingController _verifiedCodeC = TextEditingController();
-  bool isShowPassWord = false;
+  GlobalKey _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -37,50 +38,53 @@ class _SignupRouteState extends State<SignupRoute> {
             color: Theme.of(context).iconTheme.color,
             semanticsLabel: "Sleep Early"));
 
-    final usernameT = TextField(
-      autofocus: true,
-      controller: _usernameC,
-      decoration: InputDecoration(
-          labelText: "用户名", hintText: "邮箱", prefixIcon: Icon(Icons.person)),
-    );
+    final usernameT = UsernameT(controller: _usernameC);
 
-    final passwordT = TextField(
-      controller: _passwordC,
-      decoration: InputDecoration(
-          labelText: "密码",
-          hintText: "您的登录密码",
-          prefixIcon: Icon(Icons.lock),
-          suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  isShowPassWord = !isShowPassWord;
-                });
-              },
-              icon: Icon(
-                isShowPassWord ? Icons.visibility_off : Icons.visibility,
-              ))),
-      obscureText: !isShowPassWord,
-    );
+    final passwordT = PasswordT(controller: _passwordC);
 
-    final verifiedCodeT = TextField(
+    final verifiedCodeT = TextFormField(
       controller: _verifiedCodeC,
+      maxLength: 6,
       decoration: InputDecoration(
+          contentPadding: EdgeInsets.all(10.0),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
           labelText: "验证码",
           hintText: "获取到的验证码",
-          prefixIcon: Icon(Icons.lock),
+          prefixIcon: Icon(Icons.verified_user),
           suffixIcon: FlatButton(
+            padding: EdgeInsets.all(5),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(15)),
+            ),
             onPressed: () async {
+              // Todo 校验
+              bool check = checkUP();
+
               bool res = await SignAPI.verified(Sign(
-                  username: _usernameC.text,
-                  identityType: IdentityType.EMAIL)
-                  );
-              if (res== true){
+                  username: _usernameC.text.trim(),
+                  identityType: IdentityType.EMAIL));
+              if (res == true) {
                 print("验证码已发送");
               }
             },
-            child: Text("获取验证吗"),
+            child: Text("获取验证码"),
           )),
-      obscureText: true,
+          validator: (value){
+            if(value.trim().isEmpty){
+              return "验证码不能为空";
+            }else if(value.trim().length!=6){
+              return "请输入6位验证码";
+            }
+            return null;
+          },
+          inputFormatters: [
+                    // WhitelistingTextInputFormatter(RegExp("[a-z][A-Z][0-9][.]")),      //限制只允许输入字母和数字
+                   WhitelistingTextInputFormatter.digitsOnly,                //限制只允许输入数字    
+//                    LengthLimitingTextInputFormatter(8),                      //限制输入长度不超过8位
+                        
+                  ]
     );
 
     final signupB = RaisedButton(
@@ -103,35 +107,40 @@ class _SignupRouteState extends State<SignupRoute> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("注册"),
-      ),
-      body: Column(children: [
-        logo,
-        Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: <Widget>[
-              Input(
-                child: usernameT,
-              ),
-              Input(
-                child: passwordT,
-              ),
-              Input(
-                child: verifiedCodeT,
-              ),
-              Container(
-                height: 45.0,
-                margin: EdgeInsets.only(top: 40.0),
-                child: SizedBox.expand(
-                  child: signupB,
-                ),
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          title: Text("注册"),
         ),
-      ]),
-    );
+        body: Form(
+          key: _formKey,
+          autovalidate: true,
+          child: Column(children: [
+            logo,
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: <Widget>[
+                  Input(
+                    child: usernameT,
+                  ),
+                  Input(
+                    child: passwordT,
+                  ),
+                  Input(
+                    child: verifiedCodeT,
+                  ),
+                  Container(
+                    height: 45.0,
+                    margin: EdgeInsets.only(top: 40.0),
+                    child: SizedBox.expand(
+                      child: signupB,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ]),
+        ));
   }
+
+  bool checkUP() {}
 }

@@ -37,6 +37,7 @@ dependencies:
   dio: ^3.0.9
   cron: ^0.2.3
   flutter_svg: ^0.17.4
+  flustars: ^0.2.6+1
 
 dev_dependencies:
   flutter_test:
