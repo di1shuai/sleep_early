@@ -47,12 +47,13 @@
   - [x] windows
   - [x] linux
   - [x] macos
+- [x] 注册
+  - [x] email
 - [x] 登录
   - [x] email 
 
 ## Todo
-- [ ] 注册
-  - [ ] email
+
 - [ ] 未登录
   - [ ] 仅控制本设备
 - [ ] 定时关机
