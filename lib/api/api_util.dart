@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
-import 'package:sleep_early/api/api_url.dart';
+import 'package:sleep_early/common/api_url.dart';
 import 'package:sleep_early/models/api_response.dart';
 
 Map<String, dynamic> optHeader = {

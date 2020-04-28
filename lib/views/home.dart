@@ -17,6 +17,7 @@ class HomeRoute extends StatelessWidget {
           title: Text('SleepEarly'),
         ),
         drawer: Menu(),
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Column(children: <Widget>[
           Expanded(
             flex: 6,

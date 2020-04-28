@@ -5,6 +5,8 @@ class APIUrl {
   static const String ACCOUNT =  'account/';
   
   static const String SIGNIN =  'signin/';
+  static const String SIGNUP =  'signup/';
+  static const String VERIFIED =  'verified/';
   
   static const String EXCEPTION =  'test/exception/';
 

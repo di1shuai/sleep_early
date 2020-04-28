@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sleep_early/common/api_url.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/models/account.dart';
 
-import 'api_url.dart';
 import 'api_util.dart';
 
 class AccountAPI {

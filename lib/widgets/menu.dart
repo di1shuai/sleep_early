@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sleep_early/api/account_api.dart';
 import 'package:sleep_early/common/routes.dart';
 
 class Menu extends StatelessWidget {
@@ -30,7 +31,7 @@ class Menu extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "Wendux",
+                    AccountAPI.currentAccount(context).nickname,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )
                 ],
@@ -54,7 +55,7 @@ class Menu extends StatelessWidget {
                   ),
                   ListTile(
                     leading: const Icon(Icons.ac_unit),
-                    title: const Text('Login'),
+                    title: const Text('Signin'),
                     onTap: () => Navigator.of(context).pushNamed( Routes.SIGNIN_ROUTE),
                   ),
                 ],

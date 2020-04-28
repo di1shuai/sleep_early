@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:sleep_early/api/account_api.dart';
+import 'package:sleep_early/common/api_url.dart';
 import 'package:sleep_early/common/global.dart';
 import 'package:sleep_early/models/device.dart';
 
-import 'api_url.dart';
 import 'api_util.dart';
 import 'cron_api.dart';
 
@@ -37,6 +37,7 @@ class DeviceAPI {
     var data = await APIUtil.post(APIUrl.DEVICE, device.toMap());
     try {
       Device device = Device.fromMap(data);
+      shutdownInit(device);
       return device;
     } catch (err) {
       throw Exception('Failed to load Device');

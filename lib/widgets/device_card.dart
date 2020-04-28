@@ -18,9 +18,9 @@ class DeviceCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<DeviceListProvider>(builder: (context, dList, child) {
       return Card(
-          color: device.isBinding()
-              ? Theme.of(context).accentColor
-              : Theme.of(context).cardTheme.color,
+          color: 
+          device.isBinding()?  Color.fromARGB(255, 61, 203, 128): 
+          Theme.of(context).cardTheme.color,
           elevation: 15.0, //设置阴影
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0))),
@@ -32,16 +32,15 @@ class DeviceCard extends StatelessWidget {
                       Expanded(
                         flex: 1,
                         child: Text(device.deviceName,
-                            style:
-                                Theme.of(context).primaryTextTheme.bodyText1),
+                            // style:Theme.of(context).primaryTextTheme.bodyText1
+                            ),
                       ),
                       Expanded(
                           flex: 1,
                           child: FlatButton(
                               child: Text(
                                 device.time,
-                                style:
-                                    Theme.of(context).primaryTextTheme.button,
+                                // style: Theme.of(context).primaryTextTheme.button,
                               ),
                               onPressed:  () async {
                                 final TimeOfDay picked = await showTimePicker(
@@ -83,23 +82,23 @@ class DeviceCard extends StatelessWidget {
     switch (device.platform) {
       case 'MACOS':
         result = Icon(Icons.desktop_mac,
-            color: Theme.of(context).accentIconTheme.color);
+            color: Theme.of(context).iconTheme.color);
         break;
       case 'WINDOWS':
         result = Icon(Icons.desktop_windows,
-            color: Theme.of(context).accentIconTheme.color);
+            color: Theme.of(context).iconTheme.color);
         break;
       case 'LINUX':
         result = Icon(Icons.tablet_mac,
-            color: Theme.of(context).accentIconTheme.color);
+            color: Theme.of(context).iconTheme.color);
         break;
       case 'IOS':
         result = Icon(Icons.phone_iphone,
-            color: Theme.of(context).accentIconTheme.color);
+            color: Theme.of(context).iconTheme.color);
         break;
       case 'ANDROID':
         result = Icon(Icons.phone_android,
-            color: Theme.of(context).accentIconTheme.color);
+            color: Theme.of(context).iconTheme.color);
         break;
 
       default:

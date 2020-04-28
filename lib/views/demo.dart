@@ -12,10 +12,12 @@ import 'package:sleep_early/demo/permission_demo.dart';
 import 'package:sleep_early/demo/provider_account.dart';
 import 'package:sleep_early/demo/provider_demo.dart';
 import 'package:sleep_early/demo/shard_preference_demo.dart';
+import 'package:sleep_early/demo/svg_demo.dart';
 import 'package:sleep_early/demo/text_demo.dart';
 import 'package:sleep_early/demo/text_demo2.dart';
 import 'package:sleep_early/demo/time_demo.dart';
 import 'package:sleep_early/models/device.dart';
+import 'package:sleep_early/demo/login.dart';
 import 'package:sleep_early/widgets/device_dialog.dart';
 
 class DemoRoute extends StatefulWidget {
@@ -151,6 +153,26 @@ class _Menu extends State<DemoRoute> {
                 context,
                 new MaterialPageRoute(
                     builder: (context) => new ListViewDemoApp()),
+              );
+            },
+          ),
+          new ListTile(
+            title: new Text('Login'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new Login()),
+              );
+            },
+          ),
+          new ListTile(
+            title: new Text('svg'),
+            onTap: () {
+              Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => new SVGDemo()),
               );
             },
           ),
