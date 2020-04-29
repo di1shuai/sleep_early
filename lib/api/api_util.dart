@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sleep_early/common/api_url.dart';
 import 'package:sleep_early/models/api_response.dart';
 
@@ -45,7 +46,7 @@ class APIUtil {
       if (apiResponse.code == 0) {
         return apiResponse.data;
       } else if (apiResponse.code == 1) {
-        print(apiResponse.error);
+        EasyLoading.showError(apiResponse.error.message,duration: Duration(milliseconds: 500));
       }
     } else {
       print(response.data.toString());
@@ -66,7 +67,8 @@ class APIUtil {
       if (apiResponse.code == 0) {
         return apiResponse.data;
       } else if (apiResponse.code == 1) {
-        print(apiResponse.error);
+        EasyLoading.showError(apiResponse.error.message,duration: Duration(milliseconds: 500));
+        return apiResponse.data;
       }
     }
     return apiResponse.data;
@@ -86,7 +88,8 @@ class APIUtil {
       if (apiResponse.code == 0) {
         return apiResponse.data;
       } else if (apiResponse.code == 1) {
-        print(apiResponse.error);
+        EasyLoading.showError(apiResponse.error.message,duration: Duration(milliseconds: 500));
+        return apiResponse.data;
       }
     }
     return apiResponse.data;
@@ -106,7 +109,8 @@ class APIUtil {
       if (apiResponse.code == 0) {
         return apiResponse.data;
       } else if (apiResponse.code == 1) {
-        print(apiResponse.error);
+        EasyLoading.showError(apiResponse.error.message,duration: Duration(milliseconds: 500));
+        return null;
       }
     }
     return apiResponse.data;

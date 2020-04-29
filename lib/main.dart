@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'common/global.dart';
@@ -22,11 +23,12 @@ class SleepEarly extends StatelessWidget {
           )
         ],
         child: Consumer<AccountProvider>(builder: (context, pAccount, _) {
-          return MaterialApp(
-              title: 'Sleep Early',
-              theme: ThemeData.dark(),
-              darkTheme: ThemeData.dark(),
-              routes: Routes.getRoutesMap(context));
+          return FlutterEasyLoading(
+              child: MaterialApp(
+                  title: 'Sleep Early',
+                  theme: ThemeData.dark(),
+                  darkTheme: ThemeData.dark(),
+                  routes: Routes.getRoutesMap(context)));
         }));
   }
 }

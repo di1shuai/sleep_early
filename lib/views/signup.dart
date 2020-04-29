@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/sign_api.dart';
+import 'package:sleep_early/common/keys.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/common/routes.dart';
 import 'package:sleep_early/models/account.dart';
@@ -19,7 +21,7 @@ class _SignupRouteState extends State<SignupRoute> {
   TextEditingController _usernameC = TextEditingController();
   TextEditingController _passwordC = TextEditingController();
   TextEditingController _verifiedCodeC = TextEditingController();
-  GlobalKey _formKey = GlobalKey<FormState>();
+
 
   @override
   void dispose() {
@@ -38,65 +40,72 @@ class _SignupRouteState extends State<SignupRoute> {
             color: Theme.of(context).iconTheme.color,
             semanticsLabel: "Sleep Early"));
 
-    final usernameT = UsernameT(controller: _usernameC);
+    final usernameT = UsernameT(key: Keys.signupUsernameKey,controller: _usernameC);
 
     final passwordT = PasswordT(controller: _passwordC);
 
     final verifiedCodeT = TextFormField(
-      controller: _verifiedCodeC,
-      maxLength: 6,
-      decoration: InputDecoration(
-          contentPadding: EdgeInsets.all(10.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          labelText: "验证码",
-          hintText: "获取到的验证码",
-          prefixIcon: Icon(Icons.verified_user),
-          suffixIcon: FlatButton(
-            padding: EdgeInsets.all(5),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(15)),
+        controller: _verifiedCodeC,
+        maxLength: 6,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(10.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
             ),
-            onPressed: () async {
-              // Todo 校验
-              bool check = checkUP();
-
-              bool res = await SignAPI.verified(Sign(
-                  username: _usernameC.text.trim(),
-                  identityType: IdentityType.EMAIL));
-              if (res == true) {
-                print("验证码已发送");
-              }
-            },
-            child: Text("获取验证码"),
-          )),
-          validator: (value){
-            if(value.trim().isEmpty){
-              return "验证码不能为空";
-            }else if(value.trim().length!=6){
-              return "请输入6位验证码";
-            }
-            return null;
-          },
-          inputFormatters: [
-                    // WhitelistingTextInputFormatter(RegExp("[a-z][A-Z][0-9][.]")),      //限制只允许输入字母和数字
-                   WhitelistingTextInputFormatter.digitsOnly,                //限制只允许输入数字    
+            labelText: "验证码",
+            hintText: "获取到的验证码",
+            prefixIcon: Icon(Icons.verified_user),
+            suffixIcon: FlatButton(
+              padding: EdgeInsets.all(5),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(15)),
+              ),
+              onPressed: () async {
+                if (Keys.signupUsernameKey.currentState.validate()) {
+                  bool res = await SignAPI.verified(Sign(
+                      username: _usernameC.text.trim(),
+                      identityType: IdentityType.EMAIL));
+                  if (res == true) {
+                    print("验证码已发送");
+                  }
+                }else{
+                  EasyLoading.showError("请输入正确格式的账号信息",
+              duration: Duration(milliseconds: 500));
+                }
+              },
+              child: Text("获取验证码"),
+            )),
+        validator: (value) {
+          if (value.trim().isEmpty) {
+            return "验证码不能为空";
+          } else if (value.trim().length != 6) {
+            return "请输入6位验证码";
+          }
+          return null;
+        },
+        inputFormatters: [
+          // WhitelistingTextInputFormatter(RegExp("[a-z][A-Z][0-9][.]")),      //限制只允许输入字母和数字
+          WhitelistingTextInputFormatter.digitsOnly, //限制只允许输入数字
 //                    LengthLimitingTextInputFormatter(8),                      //限制输入长度不超过8位
-                        
-                  ]
-    );
+        ]);
 
     final signupB = RaisedButton(
       onPressed: () async {
-        Account account = await SignAPI.signup(Sign(
-            username: _usernameC.text,
-            password: _passwordC.text,
-            verifiedCode: _verifiedCodeC.text,
-            identityType: IdentityType.EMAIL));
-        Provider.of<AccountProvider>(context, listen: false).account = account;
-        Navigator.pushNamedAndRemoveUntil(
-            context, Routes.HOME_ROUTE, (Route<dynamic> route) => false);
+        FormState signupForm = Keys.signupFormKey.currentState;
+        if (signupForm.validate()) {
+          Account account = await SignAPI.signup(Sign(
+              username: _usernameC.text,
+              password: _passwordC.text,
+              verifiedCode: _verifiedCodeC.text,
+              identityType: IdentityType.EMAIL));
+          Provider.of<AccountProvider>(context, listen: false).account =
+              account;
+          Navigator.pushNamedAndRemoveUntil(
+              context, Routes.HOME_ROUTE, (Route<dynamic> route) => false);
+        } else {
+          EasyLoading.showError("请输入正确格式的信息",
+              duration: Duration(milliseconds: 500));
+        }
       },
       color: Color.fromARGB(255, 61, 203, 128),
       // color: Theme.of(context).accentColor,
@@ -111,23 +120,17 @@ class _SignupRouteState extends State<SignupRoute> {
           title: Text("注册"),
         ),
         body: Form(
-          key: _formKey,
-          autovalidate: true,
+          key: Keys.signupFormKey,
+          autovalidate: false,
           child: Column(children: [
             logo,
             Container(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: <Widget>[
-                  Input(
-                    child: usernameT,
-                  ),
-                  Input(
-                    child: passwordT,
-                  ),
-                  Input(
-                    child: verifiedCodeT,
-                  ),
+                  usernameT,
+                  passwordT,
+                  verifiedCodeT,
                   Container(
                     height: 45.0,
                     margin: EdgeInsets.only(top: 40.0),
@@ -141,6 +144,4 @@ class _SignupRouteState extends State<SignupRoute> {
           ]),
         ));
   }
-
-  bool checkUP() {}
 }

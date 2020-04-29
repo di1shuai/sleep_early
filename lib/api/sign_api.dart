@@ -15,23 +15,23 @@ class SignAPI {
 
   // signin
   static Future<Account> signin(Sign sign) async {
-    Map data = await APIUtil.post(APIUrl.SIGNIN, sign.toMap());
+    var data = await APIUtil.post(APIUrl.SIGNIN, sign.toMap());
     try {
       Account account = Account.fromMap(data);
       return account;
     } catch (err) {
-      throw Exception('Failed to login');
+      throw Exception('Failed to signin');
     }
   }
 
   // signup
   static Future<Account> signup(Sign sign) async {
-    Map data = await APIUtil.post(APIUrl.SIGNUP, sign.toMap());
+    var data = await APIUtil.post(APIUrl.SIGNUP, sign.toMap());
     try {
       Account account = Account.fromMap(data);
       return account;
     } catch (err) {
-      throw Exception('Failed to login');
+      throw Exception('Failed to signup');
     }
   }
 
@@ -45,7 +45,7 @@ class SignAPI {
         return false;
       }
     } catch (err) {
-      throw Exception('Failed to login');
+      throw Exception('Failed to verified');
     }
   }
 }

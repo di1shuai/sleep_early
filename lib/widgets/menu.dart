@@ -19,9 +19,8 @@ class Menu extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 38.0),
-              child: Row(
-                children: <Widget>[
-                  Padding(
+              child: ListTile(
+                leading: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0),
                     child: ClipOval(
                       child: Image.asset(
@@ -30,12 +29,13 @@ class Menu extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(
+                title: Text(
                     AccountAPI.currentAccount(context).nickname,
                     style: TextStyle(fontWeight: FontWeight.bold),
-                  )
-                ],
+                  ),
+
               ),
+          
             ),
             Expanded(
               child: ListView(

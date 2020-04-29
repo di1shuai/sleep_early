@@ -74,6 +74,7 @@ class DeviceCard extends StatelessWidget {
 
       return GestureDetector(
           onLongPress: () {
+            //Todo 删除
             print("长按");
           },
           child: Card(
@@ -92,7 +93,7 @@ class DeviceCard extends StatelessWidget {
   Future<String> showDevicenameDialog(
       BuildContext context, String oldDeviceName, Icon icon) {
     TextEditingController _deviceNameC = TextEditingController();
-    GlobalKey _formKey = GlobalKey<FormState>();
+    GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
     final content = SizedBox(
       width: 300,
@@ -118,7 +119,7 @@ class DeviceCard extends StatelessWidget {
             FlatButton(
               child: Text("更新"),
               onPressed: () async {
-                if ((_formKey.currentState as FormState).validate()) {
+                if (_formKey.currentState.validate()) {
                   Navigator.of(context).pop(_deviceNameC.text);
                 }
               },

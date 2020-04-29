@@ -2,25 +2,6 @@ import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class Input extends StatelessWidget {
-  Widget child;
-
-  Input({
-    Key key,
-    this.child,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return new Container(
-        // decoration: new BoxDecoration(
-        //     border: new Border(
-        //         bottom: BorderSide(
-        //             color: Color.fromARGB(255, 240, 240, 240), width: 1.0))),
-        child: child);
-  }
-}
-
 class UsernameT extends StatelessWidget {
   final TextEditingController controller;
 
@@ -33,7 +14,9 @@ class UsernameT extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
         autofocus: true,
+        key: key,
         maxLength: 40,
+        autovalidate: false,
         controller: controller,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.all(10.0),

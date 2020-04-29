@@ -1,5 +1,5 @@
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/sign_api.dart';
@@ -18,7 +18,6 @@ class SigninRoute extends StatefulWidget {
 class _SigninRouteState extends State<SigninRoute> {
   TextEditingController _usernameC = TextEditingController();
   TextEditingController _passwordC = TextEditingController();
-  GlobalKey _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -38,32 +37,40 @@ class _SigninRouteState extends State<SigninRoute> {
 
     final usernameT = UsernameT(controller: _usernameC);
 
-    final passwordT = PasswordT(controller: _passwordC,);
-
-    final signinB = new RaisedButton(
-      onPressed: () async {
-        if ((_formKey.currentState as FormState).validate()) {
-          //验证通过提交数据
-          Account account = await SignAPI.signin(Sign(
-              username: _usernameC.text,
-              password: _passwordC.text,
-              identityType: IdentityType.EMAIL));
-          Provider.of<AccountProvider>(context, listen: false).account =
-              account;
-          Navigator.pushNamedAndRemoveUntil(
-              context, Routes.HOME_ROUTE, (Route<dynamic> route) => false);
-        }
-      },
-      color: Color.fromARGB(255, 61, 203, 128),
-      child: new Text(
-        '登录',
-        style: TextStyle(
-          fontSize: 14.0,
-        ),
-      ),
-      shape: new RoundedRectangleBorder(
-          borderRadius: new BorderRadius.circular(45.0)),
+    final passwordT = PasswordT(
+      controller: _passwordC,
     );
+
+    final signinB = Builder(builder: (context) {
+      return new RaisedButton(
+        onPressed: () async {
+          if (Form.of(context).validate()) {
+            Account account = await SignAPI.signin(Sign(
+                username: _usernameC.text.trim(),
+                password: _passwordC.text.trim(),
+                identityType: IdentityType.EMAIL));
+            Provider.of<AccountProvider>(context, listen: false).account =
+                account;
+            if (account != null) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, Routes.HOME_ROUTE, (Route<dynamic> route) => false);
+            }
+          } else {
+            EasyLoading.showError("请输入正确格式的信息",
+                duration: Duration(milliseconds: 500));
+          }
+        },
+        color: Color.fromARGB(255, 61, 203, 128),
+        child: new Text(
+          '登录',
+          style: TextStyle(
+            fontSize: 14.0,
+          ),
+        ),
+        shape: new RoundedRectangleBorder(
+            borderRadius: new BorderRadius.circular(45.0)),
+      );
+    });
 
     final signupB = FlatButton(
       onPressed: () {
@@ -79,7 +86,7 @@ class _SigninRouteState extends State<SigninRoute> {
 
     final findB = FlatButton(
       onPressed: () {
-        print("跳转");
+        EasyLoading.showInfo("暂不支持", duration: Duration(milliseconds: 500));
       },
       child: Text(
         '忘记密码？',
@@ -89,27 +96,25 @@ class _SigninRouteState extends State<SigninRoute> {
         ),
       ),
     );
+
     return Scaffold(
         appBar: AppBar(
           title: Text("登录"),
         ),
         body: Form(
-          key: _formKey,
-          autovalidate: true,
+          autovalidate: false,
           child: Column(children: [
             logo,
             new Container(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: <Widget>[
-                  Input(child: usernameT),
-                  Input(child: passwordT),
+                  usernameT,
+                  passwordT,
                   new Container(
                     height: 45.0,
                     margin: EdgeInsets.only(top: 40.0),
-                    child: new SizedBox.expand(
-                      child: signinB,
-                    ),
+                    child: SizedBox.expand(child: signinB),
                   ),
                   new Container(
                     margin: EdgeInsets.only(top: 30.0),
