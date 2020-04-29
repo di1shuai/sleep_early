@@ -4,6 +4,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/sign_api.dart';
+import 'package:sleep_early/common/global.dart';
 import 'package:sleep_early/common/keys.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/common/routes.dart';
@@ -22,7 +23,6 @@ class _SignupRouteState extends State<SignupRoute> {
   TextEditingController _passwordC = TextEditingController();
   TextEditingController _verifiedCodeC = TextEditingController();
 
-
   @override
   void dispose() {
     _usernameC?.dispose();
@@ -34,19 +34,21 @@ class _SignupRouteState extends State<SignupRoute> {
   @override
   Widget build(BuildContext context) {
     final logo = Container(
-        padding: EdgeInsets.only(top: 100.0, bottom: 10.0),
+        padding: EdgeInsets.only(top: 50.0, bottom: 20.0),
         child: SvgPicture.asset("imgs/logo_light.svg",
-            width: 200,
+            width: 100,
             color: Theme.of(context).iconTheme.color,
             semanticsLabel: "Sleep Early"));
 
-    final usernameT = UsernameT(key: Keys.signupUsernameKey,controller: _usernameC);
+    final usernameT =
+        UsernameT(key: Keys.signupUsernameKey, controller: _usernameC);
 
     final passwordT = PasswordT(controller: _passwordC);
 
     final verifiedCodeT = TextFormField(
         controller: _verifiedCodeC,
         maxLength: 6,
+        keyboardType:TextInputType.number,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.all(10.0),
             border: OutlineInputBorder(
@@ -68,9 +70,9 @@ class _SignupRouteState extends State<SignupRoute> {
                   if (res == true) {
                     print("验证码已发送");
                   }
-                }else{
+                } else {
                   EasyLoading.showError("请输入正确格式的账号信息",
-              duration: Duration(milliseconds: 500));
+                      duration: Duration(seconds: Global.showDialogTime));
                 }
               },
               child: Text("获取验证码"),
@@ -104,7 +106,7 @@ class _SignupRouteState extends State<SignupRoute> {
               context, Routes.HOME_ROUTE, (Route<dynamic> route) => false);
         } else {
           EasyLoading.showError("请输入正确格式的信息",
-              duration: Duration(milliseconds: 500));
+              duration: Duration(seconds: Global.showDialogTime));
         }
       },
       color: Color.fromARGB(255, 61, 203, 128),
@@ -119,7 +121,9 @@ class _SignupRouteState extends State<SignupRoute> {
         appBar: AppBar(
           title: Text("注册"),
         ),
-        body: Form(
+        resizeToAvoidBottomInset: false,
+        body: SingleChildScrollView(
+            child: Form(
           key: Keys.signupFormKey,
           autovalidate: false,
           child: Column(children: [
@@ -142,6 +146,6 @@ class _SignupRouteState extends State<SignupRoute> {
               ),
             ),
           ]),
-        ));
+        )));
   }
 }

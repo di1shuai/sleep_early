@@ -4,6 +4,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:sleep_early/common/api_url.dart';
+import 'package:sleep_early/common/global.dart';
 import 'package:sleep_early/models/api_response.dart';
 
 Map<String, dynamic> optHeader = {
@@ -46,7 +47,7 @@ class APIUtil {
       if (apiResponse.code == 0) {
         return apiResponse.data;
       } else if (apiResponse.code == 1) {
-        EasyLoading.showError(apiResponse.error.message,duration: Duration(milliseconds: 500));
+        EasyLoading.showError(apiResponse.error.message,duration: Duration(seconds: Global.showDialogTime));
       }
     } else {
       print(response.data.toString());
@@ -67,7 +68,7 @@ class APIUtil {
       if (apiResponse.code == 0) {
         return apiResponse.data;
       } else if (apiResponse.code == 1) {
-        EasyLoading.showError(apiResponse.error.message,duration: Duration(milliseconds: 500));
+        EasyLoading.showError(apiResponse.error.message,duration: Duration(seconds: Global.showDialogTime));
         return apiResponse.data;
       }
     }
@@ -88,7 +89,7 @@ class APIUtil {
       if (apiResponse.code == 0) {
         return apiResponse.data;
       } else if (apiResponse.code == 1) {
-        EasyLoading.showError(apiResponse.error.message,duration: Duration(milliseconds: 500));
+        EasyLoading.showError(apiResponse.error.message,duration: Duration(seconds: Global.showDialogTime));
         return apiResponse.data;
       }
     }
@@ -109,7 +110,7 @@ class APIUtil {
       if (apiResponse.code == 0) {
         return apiResponse.data;
       } else if (apiResponse.code == 1) {
-        EasyLoading.showError(apiResponse.error.message,duration: Duration(milliseconds: 500));
+        EasyLoading.showError(apiResponse.error.message,duration: Duration(seconds: Global.showDialogTime));
         return null;
       }
     }

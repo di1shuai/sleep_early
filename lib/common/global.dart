@@ -19,6 +19,8 @@ class Global {
   static List<MaterialColor> get themes => _themes;
 
   static String deviceId;
+  
+  static int showDialogTime = 1;
 
   static const String refreshCronStr = "*/1 * * * *";
 

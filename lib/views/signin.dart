@@ -3,6 +3,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/sign_api.dart';
+import 'package:sleep_early/common/global.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/common/routes.dart';
 import 'package:sleep_early/models/account.dart';
@@ -29,9 +30,9 @@ class _SigninRouteState extends State<SigninRoute> {
   @override
   Widget build(BuildContext context) {
     final logo = new Container(
-        padding: EdgeInsets.only(top: 100.0, bottom: 10.0),
+        padding: EdgeInsets.only(top: 50.0, bottom: 20.0),
         child: SvgPicture.asset("imgs/logo_light.svg",
-            width: 200,
+            width: 100,
             color: Theme.of(context).iconTheme.color,
             semanticsLabel: "Sleep Early"));
 
@@ -57,7 +58,7 @@ class _SigninRouteState extends State<SigninRoute> {
             }
           } else {
             EasyLoading.showError("请输入正确格式的信息",
-                duration: Duration(milliseconds: 500));
+                duration: Duration(seconds: Global.showDialogTime));
           }
         },
         color: Color.fromARGB(255, 61, 203, 128),
@@ -86,7 +87,7 @@ class _SigninRouteState extends State<SigninRoute> {
 
     final findB = FlatButton(
       onPressed: () {
-        EasyLoading.showInfo("暂不支持", duration: Duration(milliseconds: 500));
+        EasyLoading.showInfo("暂不支持", duration: Duration(seconds: Global.showDialogTime));
       },
       child: Text(
         '忘记密码？',
@@ -101,7 +102,9 @@ class _SigninRouteState extends State<SigninRoute> {
         appBar: AppBar(
           title: Text("登录"),
         ),
-        body: Form(
+        resizeToAvoidBottomInset: false,
+        body: SingleChildScrollView(
+            child: Form(
           autovalidate: false,
           child: Column(children: [
             logo,
@@ -128,6 +131,6 @@ class _SigninRouteState extends State<SigninRoute> {
               ),
             ),
           ]),
-        ));
+        )));
   }
 }
