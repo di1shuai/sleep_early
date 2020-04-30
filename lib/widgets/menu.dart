@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/api/account_api.dart';
+import 'package:sleep_early/common/api_url.dart';
+import 'package:sleep_early/common/global.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/common/routes.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Menu extends StatelessWidget {
   const Menu({
@@ -53,11 +57,18 @@ class Menu extends StatelessWidget {
                   ),
                   Divider(),
                   ListTile(
-                    leading: const Icon(Icons.feedback),
-                    title: const Text('反馈'),
-                    onTap: () =>
-                        Navigator.of(context).pushNamed(Routes.DEMO_ROUTE),
-                  ),
+                      leading: const Icon(Icons.feedback),
+                      title: const Text('反馈'),
+                      onTap: () async {
+                        if (await canLaunch(APIUrl.FEEDBACK_URL)) {
+                          await launch(APIUrl.FEEDBACK_URL);
+                        } else {
+                          EasyLoading.showError(
+                              "Could not launch ${APIUrl.FEEDBACK_URL}",
+                              duration:
+                                  Duration(seconds: Global.showDialogTime));
+                        }
+                      }),
                   ListTile(
                     leading: const Icon(Icons.info_outline),
                     title: const Text('关于'),
@@ -69,8 +80,10 @@ class Menu extends StatelessWidget {
                       leading: const Icon(Icons.exit_to_app),
                       title: const Text('退出'),
                       onTap: () {
-                        Provider.of<AccountProvider>(context,listen: false).account = null;
-                        Provider.of<DeviceListProvider>(context,listen: false).devices = null;
+                        Provider.of<AccountProvider>(context, listen: false)
+                            .account = null;
+                        Provider.of<DeviceListProvider>(context, listen: false)
+                            .devices = null;
                         Navigator.pushNamedAndRemoveUntil(
                             context,
                             Routes.SIGNIN_ROUTE,

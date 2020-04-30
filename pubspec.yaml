@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^0.17.4
   flustars: ^0.2.6+1
   flutter_easyloading: ^1.1.4
+  url_launcher: ^5.4.5
 
 dev_dependencies:
   flutter_test:
