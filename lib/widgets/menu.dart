@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sleep_early/api/account_api.dart';
+import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/common/routes.dart';
-import 'package:sleep_early/models/device.dart';
 
 class Menu extends StatelessWidget {
   const Menu({
@@ -50,6 +51,13 @@ class Menu extends StatelessWidget {
                     onTap: () =>
                         Navigator.of(context).pushNamed(Routes.DEMO_ROUTE),
                   ),
+                  Divider(),
+                  ListTile(
+                    leading: const Icon(Icons.feedback),
+                    title: const Text('反馈'),
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.DEMO_ROUTE),
+                  ),
                   ListTile(
                     leading: const Icon(Icons.info_outline),
                     title: const Text('关于'),
@@ -58,12 +66,16 @@ class Menu extends StatelessWidget {
                   ),
                   Divider(),
                   ListTile(
-                    leading: const Icon(Icons.exit_to_app),
-                    title: const Text('退出登录'),
-                    // trailing: const Icon(Icons.exit_to_app),
-                    onTap: () =>
-                        Navigator.of(context).pushNamed(Routes.SIGNIN_ROUTE),
-                  ),
+                      leading: const Icon(Icons.exit_to_app),
+                      title: const Text('退出'),
+                      onTap: () {
+                        Provider.of<AccountProvider>(context,listen: false).account = null;
+                        Provider.of<DeviceListProvider>(context,listen: false).devices = null;
+                        Navigator.pushNamedAndRemoveUntil(
+                            context,
+                            Routes.SIGNIN_ROUTE,
+                            (Route<dynamic> route) => false);
+                      }),
                 ],
               ),
             ),
