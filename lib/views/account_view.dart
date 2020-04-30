@@ -56,8 +56,10 @@ class _AccountRouteState extends State<AccountRoute> {
                             context, accountP.account.nickname);
                         if (nickname != null) {
                           _account.nickname = nickname;
-                          accountP.account =
-                              await AccountAPI.updateAccount(_account);
+                          Account account = await AccountAPI.updateAccount(_account);
+                          if(account != null){
+                            accountP.account = account;
+                          }
                         }
                       }),
                 ],
@@ -96,6 +98,7 @@ class _AccountRouteState extends State<AccountRoute> {
               child: Text("更新"),
               onPressed: () async {
                 // if (_formKey.currentState.validate()) {
+                print(_nicknameC.text);
                 Navigator.of(context).pop(_nicknameC.text);
                 // }
               },

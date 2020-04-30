@@ -5,6 +5,7 @@ import 'package:device_info/device_info.dart';
 import 'package:flutter/material.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sleep_early/api/account_api.dart';
 import 'package:sleep_early/models/profile.dart';
 
 const _themes = <MaterialColor>[
@@ -43,6 +44,11 @@ class Global {
     if (_profile != null) {
       try {
         profile = Profile.fromJson(_profile);
+        
+        if(profile.account!=null){
+          profile.account = await AccountAPI.getAccount(profile.account.id);
+          saveProfile();
+        }
         print("profile -> $profile");
       } catch (e) {
         print(e);

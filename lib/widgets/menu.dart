@@ -50,6 +50,12 @@ class Menu extends StatelessWidget {
                     onTap: () =>
                         Navigator.of(context).pushNamed(Routes.DEMO_ROUTE),
                   ),
+                  ListTile(
+                    leading: const Icon(Icons.info_outline),
+                    title: const Text('关于'),
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(Routes.DEMO_ROUTE),
+                  ),
                   Divider(),
                   ListTile(
                     leading: const Icon(Icons.exit_to_app),
