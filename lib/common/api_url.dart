@@ -2,7 +2,7 @@ class APIUrl {
   
   static const String BASE_URL = 'http://192.168.72.91:8880/api/';
   
-  static const String FEEDBACK_URL = 'https://github.com/di1shuai/sleep_early/issues/new';
+  static const String FEEDBACK_URL = 'https://github.com/di1shuai/sleep_early/issues';
 
 
   // ===========================
