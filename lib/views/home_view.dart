@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sleep_early/api/sign_api.dart';
-import 'package:sleep_early/views/signin.dart';
+import 'package:sleep_early/views/signin_view.dart';
 import 'package:sleep_early/widgets/device_card_list.dart';
 import 'package:sleep_early/widgets/menu.dart';
 

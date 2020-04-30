@@ -21,6 +21,18 @@ class AccountAPI {
     }
   }
 
+    static Future<Account> updateAccount(Account account) async {
+    Map data = await APIUtil.put(APIUrl.ACCOUNT,account.toMap());
+    try {
+      Account account = Account.fromMap(data);
+
+      return account;
+    } catch (err) {
+      throw Exception('Failed to load Account');
+    }
+  }
+
+
   static Account currentAccount(BuildContext context) {
     AccountProvider accountPrd = Provider.of<AccountProvider>(context,listen: false);
     return accountPrd.account;

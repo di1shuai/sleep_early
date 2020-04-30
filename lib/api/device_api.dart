@@ -84,10 +84,19 @@ class DeviceAPI {
   }
 
   static Device getInitDevice(BuildContext context) {
+    String deviceName;
+    if(Platform.isAndroid){
+      deviceName = Global.deviceData['id'];
+    }else if(Platform.isIOS){
+      deviceName = Platform.localHostname;
+    }else{
+      deviceName = Platform.localHostname;
+    }
+
     return new Device(
         id: null,
         accountId: AccountAPI.currentAccount(context).id,
-        deviceName: Platform.localHostname,
+        deviceName: DeviceAPI.isDesktop() ? Platform.localHostname : Platform.localHostname,
         deviceId: Global.deviceId,
         platform: Platform.operatingSystem.toUpperCase(),
         open: true,
@@ -111,4 +120,12 @@ class DeviceAPI {
     }
     return false;
   }
+
+  static bool isDesktop(){
+    if(Platform.isWindows | Platform.isMacOS | Platform.isLinux){
+      return true;
+    }
+    return false;
+  }
+
 }

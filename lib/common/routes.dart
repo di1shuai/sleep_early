@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sleep_early/views/demo.dart';
-import 'package:sleep_early/views/home.dart';
-import 'package:sleep_early/views/signin.dart';
-import 'package:sleep_early/views/signup.dart';
+import 'package:sleep_early/views/account_view.dart';
+import 'package:sleep_early/views/demo_view.dart';
+import 'package:sleep_early/views/home_view.dart';
+import 'package:sleep_early/views/signin_view.dart';
+import 'package:sleep_early/views/signup_view.dart';
 
 class Routes{
 
   static const String HOME_ROUTE  = "/";
   static const String SIGNIN_ROUTE = "/signin";
   static const String SIGNUP_ROUTE = "/signup";
+  static const String ACCOUNT_ROUTE = "/account";
   static const String DEMO_ROUTE  = "/demo";
 
 
@@ -17,6 +19,7 @@ class Routes{
       HOME_ROUTE : (context) => HomeRoute(),
       SIGNIN_ROUTE : (context) => SigninRoute(),
       SIGNUP_ROUTE : (context) => SignupRoute(),
+      ACCOUNT_ROUTE : (context) => AccountRoute(),
       DEMO_ROUTE : (context) => DemoRoute(),
     };
   }

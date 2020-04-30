@@ -139,3 +139,43 @@ class DeviceNameT extends StatelessWidget {
         ]);
   }
 }
+
+class NicknameT extends StatelessWidget {
+  final TextEditingController controller;
+
+  final String oldNickname;
+
+  const NicknameT({
+    Key key,
+    this.controller,
+    this.oldNickname,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+        autofocus: true,
+        maxLength: 8,
+        controller: controller,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(10.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            labelText: "昵称",
+            hintText: oldNickname,
+            prefixIcon: Icon(Icons.person)),
+        validator: (value) {
+          if (value.trim().isEmpty) {
+            return "昵称不能为空";
+          } else if (value.trim().length < 2) {
+            return "昵称不能少于2位";
+          }
+          return null;
+        },
+        inputFormatters: [
+          WhitelistingTextInputFormatter(
+              RegExp("[a-z,A-Z,0-9]|[\u4e00-\u9fa5]|"))
+        ]);
+  }
+}
