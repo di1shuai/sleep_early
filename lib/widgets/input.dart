@@ -96,6 +96,59 @@ class _PasswordTState extends State<PasswordT> {
         ]);
   }
 }
+class RePasswordT extends StatefulWidget {
+  final TextEditingController controller;
+  final TextEditingController passwordC;
+
+  RePasswordT({Key key, this.controller,this.passwordC}) : super(key: key);
+
+  @override
+  _RePasswordTState createState() => _RePasswordTState(controller: controller,passwordC: passwordC);
+}
+
+class _RePasswordTState extends State<RePasswordT> {
+  TextEditingController controller;
+  TextEditingController passwordC;
+
+  _RePasswordTState({Key key, this.controller,this.passwordC});
+
+  bool isShowPassWord = false;
+
+  @override
+  Widget build(Object context) {
+    return TextFormField(
+        controller: controller,
+        maxLength: 16,
+        decoration: InputDecoration(
+            contentPadding: EdgeInsets.all(10.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            labelText: "确认密码",
+            hintText: "请再次输入密码",
+            prefixIcon: Icon(Icons.lock),
+            suffixIcon: IconButton(
+                onPressed: () {
+                  setState(() {
+                    isShowPassWord = !isShowPassWord;
+                  });
+                },
+                icon: Icon(
+                  isShowPassWord ? Icons.visibility_off : Icons.visibility,
+                ))),
+        obscureText: !isShowPassWord,
+        validator: (value) {
+          if(value.trim() != passwordC.text){
+            return "两次密码输入不一致";
+          }
+          return null;
+        },
+        inputFormatters: [
+          WhitelistingTextInputFormatter(
+              RegExp("[a-z,A-Z,0-9,@,.,_]")) //限制只允许输入字母和数字
+        ]);
+  }
+}
 
 class DeviceNameT extends StatelessWidget {
   final TextEditingController controller;
