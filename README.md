@@ -21,17 +21,27 @@
 
 ## 界面
 
+- 登录
+<img height="480px" src="doc/images/signin.png">
+
+- 校验
+<img height="480px" src="doc/images/validate.png">
+
+- 注册
+<img height="480px" src="doc/images/signup.png">
+
+- 设备绑定
+<img height="480px" src="doc/images/biding.png">
+
 - Home
+<img height="480px" src="doc/images/home.png">
 
-<div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/android.png" width="482" height="698" alt="android"/></div>
+- Menu
+<img height="480px" src="doc/images/menu.png">
 
-<div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/windows.png" width="482" height="698" alt="windows"/></div>
+- 个人信息
+<img height="480px" src="doc/images/info.png">
 
-<div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/mac.png" width="482" height="698" alt="mac"/></div>
-
-- Time Select
-
-<div align=center><img src="https://github.com/di1shuai/sleep_early/blob/master/doc/images/time.png" width="482" height="698" alt="select"/></div>
 
 ## Done
 
