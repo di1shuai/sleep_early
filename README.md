@@ -31,7 +31,7 @@
 <img height="480px" src="doc/images/signup.png">
 
 - 设备绑定
-<img height="480px" src="doc/images/biding.png">
+<img height="480px" src="doc/images/binding.png">
 
 - Home
 <img height="480px" src="doc/images/home.png">
