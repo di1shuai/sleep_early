@@ -36,6 +36,10 @@
 - Home
 <img height="480px" src="doc/images/home.png">
 
+- Time
+<img height="480px" src="doc/images/time.png">
+
+
 - Menu
 <img height="480px" src="doc/images/menu.png">
 
