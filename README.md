@@ -69,3 +69,7 @@
   - [ ] phone
 - [ ] 第三方登录
   - [ ] wechat
+
+## Plan
+
+全部计划请移步[SleepEarly](https://github.com/orgs/di1shuai/projects/1)查看
