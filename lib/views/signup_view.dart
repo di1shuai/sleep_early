@@ -21,6 +21,7 @@ class SignupRoute extends StatefulWidget {
 class _SignupRouteState extends State<SignupRoute> {
   TextEditingController _usernameC = TextEditingController();
   TextEditingController _passwordC = TextEditingController();
+  TextEditingController _repasswordC = TextEditingController();
   TextEditingController _verifiedCodeC = TextEditingController();
 
   @override
@@ -45,10 +46,15 @@ class _SignupRouteState extends State<SignupRoute> {
 
     final passwordT = PasswordT(controller: _passwordC);
 
+    final repasswordT = RePasswordT(
+      controller: _repasswordC,
+      passwordC: _passwordC,
+    );
+
     final verifiedCodeT = TextFormField(
         controller: _verifiedCodeC,
         maxLength: 6,
-        keyboardType:TextInputType.number,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
             contentPadding: EdgeInsets.all(10.0),
             border: OutlineInputBorder(
@@ -134,6 +140,7 @@ class _SignupRouteState extends State<SignupRoute> {
                 children: <Widget>[
                   usernameT,
                   passwordT,
+                  repasswordT,
                   verifiedCodeT,
                   Container(
                     height: 45.0,
