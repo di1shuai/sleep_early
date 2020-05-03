@@ -73,7 +73,7 @@ class Menu extends StatelessWidget {
                     leading: const Icon(Icons.info_outline),
                     title: const Text('关于'),
                     onTap: () =>
-                        Navigator.of(context).pushNamed(Routes.DEMO_ROUTE),
+                        Navigator.of(context).pushNamed(Routes.ABOUT_ROUTE),
                   ),
                   Divider(),
                   ListTile(

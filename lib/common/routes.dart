@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sleep_early/views/about/privacy_policy_view.dart';
+import 'package:sleep_early/views/about/user_agreement_view.dart';
+import 'package:sleep_early/views/about_view.dart';
 import 'package:sleep_early/views/account_view.dart';
 import 'package:sleep_early/views/demo_view.dart';
 import 'package:sleep_early/views/home_view.dart';
@@ -11,6 +14,9 @@ class Routes{
   static const String SIGNIN_ROUTE = "/signin";
   static const String SIGNUP_ROUTE = "/signup";
   static const String ACCOUNT_ROUTE = "/account";
+  static const String ABOUT_ROUTE = "/about";
+  static const String PrivacyPolicy_ROUTE = "/about/privacy_policy";
+  static const String UserAgreement_ROUTE = "/about/user_agreement";
   static const String DEMO_ROUTE  = "/demo";
 
 
@@ -21,6 +27,10 @@ class Routes{
       SIGNUP_ROUTE : (context) => SignupRoute(),
       ACCOUNT_ROUTE : (context) => AccountRoute(),
       DEMO_ROUTE : (context) => DemoRoute(),
+      ABOUT_ROUTE : (context) => AboutRoute(),
+      PrivacyPolicy_ROUTE : (context) => PrivacyPolicyRoute(),
+      UserAgreement_ROUTE : (context) => UserAgreementRoute(),
+    
     };
   }
 

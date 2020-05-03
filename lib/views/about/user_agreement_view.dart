@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
+
+const String _markdownData = """
 # 用户协议
 
 ## 导言
@@ -75,3 +79,30 @@
 2. 如本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，本协议的其余条款仍应有效并且有约束力。
 
 3. 本协议解释权及修订权归早点睡所有。
+
+""";
+
+class UserAgreementRoute extends StatelessWidget {
+  final controller = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('用户协议'),
+      ),
+      body: SafeArea(
+        child: Markdown(
+          controller: controller,
+          selectable: true,
+          data: _markdownData,
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_upward),
+        onPressed: () => controller.animateTo(0,
+            duration: Duration(seconds: 1), curve: Curves.easeOut),
+      ),
+    );
+  }
+}
