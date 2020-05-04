@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sleep_early/common/api_url.dart';
+import 'package:sleep_early/common/http_manager.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/models/account.dart';
 import 'package:sleep_early/models/sign.dart';
 
-import 'http_manager.dart';
 
 class SignAPI {
   static bool isSignin(BuildContext context) {

@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:sleep_early/api/account_api.dart';
 import 'package:sleep_early/common/api_url.dart';
 import 'package:sleep_early/common/global.dart';
+import 'package:sleep_early/common/http_manager.dart';
 import 'package:sleep_early/models/device.dart';
 
 import 'cron_api.dart';
-import 'http_manager.dart';
 
 class DeviceAPI {
 // Device
