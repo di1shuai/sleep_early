@@ -5,7 +5,7 @@ import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/models/account.dart';
 import 'package:sleep_early/models/sign.dart';
 
-import 'api_util.dart';
+import 'http_manager.dart';
 
 class SignAPI {
   static bool isSignin(BuildContext context) {
@@ -15,7 +15,7 @@ class SignAPI {
 
   // signin
   static Future<Account> signin(Sign sign) async {
-    var data = await APIUtil.post(APIUrl.SIGNIN, sign.toMap());
+    var data = await HttpManager.post(APIUrl.SIGNIN, sign.toMap());
     try {
       Account account = Account.fromMap(data);
       return account;
@@ -26,7 +26,7 @@ class SignAPI {
 
   // signup
   static Future<Account> signup(Sign sign) async {
-    var data = await APIUtil.post(APIUrl.SIGNUP, sign.toMap());
+    var data = await HttpManager.post(APIUrl.SIGNUP, sign.toMap());
     try {
       Account account = Account.fromMap(data);
       return account;
@@ -37,7 +37,7 @@ class SignAPI {
 
   // verified
   static Future<bool> verified(Sign sign) async {
-    var data = await APIUtil.post(APIUrl.VERIFIED, sign.toMap());
+    var data = await HttpManager.post(APIUrl.VERIFIED, sign.toMap());
     try {
       if (data == null) {
         return true;

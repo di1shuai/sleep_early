@@ -6,14 +6,14 @@ import 'package:sleep_early/common/api_url.dart';
 import 'package:sleep_early/common/global.dart';
 import 'package:sleep_early/models/device.dart';
 
-import 'api_util.dart';
 import 'cron_api.dart';
+import 'http_manager.dart';
 
 class DeviceAPI {
 // Device
 
   static Future<List<Device>> getDeviceList(Device device) async {
-    var data = await APIUtil.get(APIUrl.DEVICE, device.toMap());
+    var data = await HttpManager.get(APIUrl.DEVICE, device.toMap());
     try {
       List<Device> devices = toDeviceList(data);
       return devices;
@@ -24,7 +24,7 @@ class DeviceAPI {
 
   static Future<List<Device>> getDeviceByAccountId(int accountId) async {
     Map<String, int> query = {"accountId": accountId};
-    var data = await APIUtil.get(APIUrl.DEVICE, query);
+    var data = await HttpManager.get(APIUrl.DEVICE, query);
     try {
       List<Device> devices = toDeviceList(data);
       return devices;
@@ -34,7 +34,7 @@ class DeviceAPI {
   }
 
   static Future<Device> CreateDevice(Device device) async {
-    var data = await APIUtil.post(APIUrl.DEVICE, device.toMap());
+    var data = await HttpManager.post(APIUrl.DEVICE, device.toMap());
     try {
       Device device = Device.fromMap(data);
       shutdownInit(device);
@@ -45,7 +45,7 @@ class DeviceAPI {
   }
 
   static Future<Device> UpdateDevice(Device device) async {
-    var data = await APIUtil.put(APIUrl.DEVICE, device.toMap());
+    var data = await HttpManager.put(APIUrl.DEVICE, device.toMap());
     try {
       Device device = Device.fromMap(data);
       shutdownInit(device);
@@ -56,7 +56,7 @@ class DeviceAPI {
   }
 
   static Future<bool> DeleteDevice(Device device) async {
-    var data = await APIUtil.delete(APIUrl.DEVICE + device.id.toString());
+    var data = await HttpManager.delete(APIUrl.DEVICE + device.id.toString());
     try {
       if (data == null) {
         device.isBinding() ? CronAPI.scheduleShutdownCancel() : null;

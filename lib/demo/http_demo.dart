@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sleep_early/api/account_api.dart';
-import 'package:sleep_early/api/api_util.dart';
 import 'package:sleep_early/common/api_url.dart';
 import 'package:sleep_early/models/account.dart';
 

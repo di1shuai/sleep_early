@@ -4,14 +4,14 @@ import 'package:sleep_early/common/api_url.dart';
 import 'package:sleep_early/common/providers.dart';
 import 'package:sleep_early/models/account.dart';
 
-import 'api_util.dart';
+import 'http_manager.dart';
 
 class AccountAPI {
 
    // Account
 
   static Future<Account> getAccount(int id) async {
-    Map data = await APIUtil.get(APIUrl.ACCOUNT + id.toString());
+    Map data = await HttpManager.get(APIUrl.ACCOUNT + id.toString());
     try {
       Account account = Account.fromMap(data);
 
@@ -22,7 +22,7 @@ class AccountAPI {
   }
 
     static Future<Account> updateAccount(Account account) async {
-    Map data = await APIUtil.put(APIUrl.ACCOUNT,account.toMap());
+    Map data = await HttpManager.put(APIUrl.ACCOUNT,account.toMap());
     try {
       Account account = Account.fromMap(data);
 
