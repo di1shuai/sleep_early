@@ -31,7 +31,6 @@ class HttpManager {
       //Http请求头.
       headers: {
         'accept-language': 'zh-cn',
-        //do something
         // "version": "1.0.0"
       },
       //请求的Content-Type，默认值是"application/json; charset=utf-8",Headers.formUrlEncodedContentType会自动编码请求体.
