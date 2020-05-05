@@ -39,11 +39,7 @@ class SignAPI {
   static Future<bool> verified(Sign sign) async {
     var data = await HttpManager.post(APIUrl.VERIFIED, sign.toMap());
     try {
-      if (data == null) {
-        return true;
-      } else {
-        return false;
-      }
+      return data;
     } catch (err) {
       throw Exception('Failed to verified');
     }

@@ -21,7 +21,7 @@ class SignupRoute extends StatefulWidget {
 class _SignupRouteState extends State<SignupRoute> {
   TextEditingController _usernameC = TextEditingController();
   TextEditingController _passwordC = TextEditingController();
-  TextEditingController _repasswordC = TextEditingController();
+  // TextEditingController _repasswordC = TextEditingController();
   TextEditingController _verifiedCodeC = TextEditingController();
 
   @override
@@ -46,10 +46,10 @@ class _SignupRouteState extends State<SignupRoute> {
 
     final passwordT = PasswordT(controller: _passwordC);
 
-    final repasswordT = RePasswordT(
-      controller: _repasswordC,
-      passwordC: _passwordC,
-    );
+    // final repasswordT = RePasswordT(
+    //   controller: _repasswordC,
+    //   passwordC: _passwordC,
+    // );
 
     final verifiedCodeT = TextFormField(
         controller: _verifiedCodeC,
@@ -74,7 +74,11 @@ class _SignupRouteState extends State<SignupRoute> {
                       username: _usernameC.text.trim(),
                       identityType: IdentityType.EMAIL));
                   if (res == true) {
-                    print("验证码已发送");
+                    EasyLoading.showSuccess("验证码已发送",
+                        duration: Duration(seconds: Global.showDialogTime));
+                  } else {
+                    EasyLoading.showError("验证码发送失败",
+                        duration: Duration(seconds: Global.showDialogTime));
                   }
                 } else {
                   EasyLoading.showError("请输入正确格式的账号信息",
@@ -140,7 +144,7 @@ class _SignupRouteState extends State<SignupRoute> {
                 children: <Widget>[
                   usernameT,
                   passwordT,
-                  repasswordT,
+                  // repasswordT,
                   verifiedCodeT,
                   Container(
                     height: 45.0,

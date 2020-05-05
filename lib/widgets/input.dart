@@ -1,6 +1,7 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:sleep_early/common/routes.dart';
 
 class UsernameT extends StatelessWidget {
   final TextEditingController controller;
@@ -96,21 +97,23 @@ class _PasswordTState extends State<PasswordT> {
         ]);
   }
 }
+
 class RePasswordT extends StatefulWidget {
   final TextEditingController controller;
   final TextEditingController passwordC;
 
-  RePasswordT({Key key, this.controller,this.passwordC}) : super(key: key);
+  RePasswordT({Key key, this.controller, this.passwordC}) : super(key: key);
 
   @override
-  _RePasswordTState createState() => _RePasswordTState(controller: controller,passwordC: passwordC);
+  _RePasswordTState createState() =>
+      _RePasswordTState(controller: controller, passwordC: passwordC);
 }
 
 class _RePasswordTState extends State<RePasswordT> {
   TextEditingController controller;
   TextEditingController passwordC;
 
-  _RePasswordTState({Key key, this.controller,this.passwordC});
+  _RePasswordTState({Key key, this.controller, this.passwordC});
 
   bool isShowPassWord = false;
 
@@ -138,7 +141,7 @@ class _RePasswordTState extends State<RePasswordT> {
                 ))),
         obscureText: !isShowPassWord,
         validator: (value) {
-          if(value.trim() != passwordC.text){
+          if (value.trim() != passwordC.text) {
             return "两次密码输入不一致";
           }
           return null;
@@ -231,4 +234,66 @@ class NicknameT extends StatelessWidget {
               RegExp("[a-z,A-Z,0-9]|[\u4e00-\u9fa5]|"))
         ]);
   }
+}
+
+class AgreementT extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CheckboxFormField(
+      context: context,
+      title: Row(
+        children: <Widget>[
+          Text("阅读并同意"),
+          InkWell(
+            onTap: () =>
+                Navigator.of(context).pushNamed(Routes.USER_AGREEMENT_ROUTE),
+            child: Text("《用户协议》", style: TextStyle(color: Colors.blue)),
+
+            // Text("《用户协议》"),
+          ),
+          Text("和"),
+          InkWell(
+              onTap: () =>
+                  Navigator.of(context).pushNamed(Routes.PRIVACY_POLICY_ROUTE),
+              child: Text("《隐私政策》", style: TextStyle(color: Colors.blue))),
+        ],
+      ),
+      validator: (value) {
+        if (!value) {
+          return "请阅读并同意《用户协议》和《隐私政策》";
+        }
+        return null;
+      },
+    );
+  }
+}
+
+class CheckboxFormField extends FormField<bool> {
+  CheckboxFormField(
+      {Widget title,
+      @required BuildContext context,
+      FormFieldSetter<bool> onSaved,
+      FormFieldValidator<bool> validator,
+      bool initialValue = false,
+      bool autovalidate = false})
+      : super(
+            onSaved: onSaved,
+            validator: validator,
+            initialValue: initialValue,
+            autovalidate: autovalidate,
+            builder: (FormFieldState<bool> state) {
+              return CheckboxListTile(
+                dense: state.hasError,
+                title: title,
+                value: state.value,
+                onChanged: state.didChange,
+                subtitle: state.hasError
+                    ? Text(
+                        state.errorText,
+                        style: TextStyle(color: Theme.of(context).errorColor),
+                      )
+                    : null,
+                controlAffinity: ListTileControlAffinity.leading,
+              );
+            });
 }

@@ -42,6 +42,8 @@ class _SigninRouteState extends State<SigninRoute> {
       controller: _passwordC,
     );
 
+    final agreementT =  AgreementT();
+
     final signinB = Builder(builder: (context) {
       return new RaisedButton(
         onPressed: () async {
@@ -114,6 +116,7 @@ class _SigninRouteState extends State<SigninRoute> {
                 children: <Widget>[
                   usernameT,
                   passwordT,
+                  agreementT,
                   new Container(
                     height: 45.0,
                     margin: EdgeInsets.only(top: 40.0),

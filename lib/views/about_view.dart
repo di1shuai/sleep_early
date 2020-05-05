@@ -23,7 +23,7 @@ class AboutRoute extends StatelessWidget {
                   title: Text("用户协议"),
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    Navigator.of(context).pushNamed(Routes.UserAgreement_ROUTE);
+                    Navigator.of(context).pushNamed(Routes.USER_AGREEMENT_ROUTE);
                   },
                 ),
                 Divider(),
@@ -31,7 +31,7 @@ class AboutRoute extends StatelessWidget {
                   title: Text("隐私政策"),
                   trailing: Icon(Icons.arrow_forward_ios),
                   onTap: () {
-                    Navigator.of(context).pushNamed(Routes.PrivacyPolicy_ROUTE);
+                    Navigator.of(context).pushNamed(Routes.PRIVACY_POLICY_ROUTE);
                   },
                 ),
               ],
